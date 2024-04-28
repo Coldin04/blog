@@ -22,3 +22,20 @@ url = "https://coldin.top"
 
 [social.params]
 icon = "home"
+
+[[social]]
+identifier = "note"
+name = "Note"
+url = "https://note.coldin.top"
+
+[social.params]
+icon = "notebook"
+
+
+[[main]]
+identifier = "note"
+name = "笔记仓库"
+url = "https://note.coldin.top"
+[main.params]
+icon = "notebook"
+newtab = true
