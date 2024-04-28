@@ -71,7 +71,7 @@ default = "auto"
 enabled = true
 
 [imageProcessing.content]
-enabled = true
+enabled = false
 
 ## Comments
 [comments]
@@ -147,3 +147,6 @@ clientSecret = ""
 [comments.cusdis]
 host = ""
 id = ""
+
+[render.image.extranelLink]
+enabled = true
