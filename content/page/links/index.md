@@ -2,10 +2,10 @@
 title: "友链"
 slug: "links"
 links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: 酷丁的笔记站
+    description: 一个有点水的笔记，致力于分享自己的知识
+    website: https://note.coldin.top
+    image: https://note.coldin.top/logo.png
 menu:
     main: 
         weight: 4
