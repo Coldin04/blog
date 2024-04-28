@@ -1,9 +1,9 @@
 ---
-title: 新站上线！用Vuepress搭建的个人笔记库_
+title: 新站上线！用Vuepress搭建的个人笔记库
 description: Vuepress构建的笔记仓库，里面不少好东西
 slug: note-news
 date: 2023-10-30 22:00:00+0800
-image: 2.jpg
+#image: 2.jpg
 categories:
     - vuepress
     - note
@@ -105,4 +105,3 @@ Require stack:
 在这次的配置过程中，确实让我整个人都得到了一个放松。前段时间状态确实不太行。在这次配置的过程中不断面对问题，解决问题，让我感到了久违的满足感和获得感。也让我重新找回了学习的乐趣。
 
 感谢vuepress、vuepress-theme-hope等开源项目的开发者，感谢他们的付出，让我能够使用这么好的工具。最后，也感谢你能够看到这里，希望你能够喜欢这个笔记站。
-

@@ -34,7 +34,14 @@ links:
     description: 欢迎来猫窝，喵。
     website: https://www.neko.ink/
     image: https://www.neko.ink/wp-content/uploads/2021/12/Profile.jpg
-
+  - title: Cynosura
+    description: Trying to light up the dark.
+    website: https://cynosura.one
+    image: https://cynosura.one/img/avatar.webp
+  - title: Lezi的Blog
+    description: 世界上本没有博客，直到有了程序员
+    website: https://leziblog.com/
+    image: https://leziblog.com/wp-content/uploads/2023/01/1674400634-QQ%E5%9B%BE%E7%89%8720230122231613.jpg
 menu:
     main: 
         weight: 4

@@ -3,7 +3,7 @@ title: 配置ProxyChains，使得终端可以使用代理
 description: 让无图形机器使用代理
 slug: ProxyChains
 date: 2023-10-30 22:00:00+0800
-image: 2.jpg
+#image: 2.jpg
 categories:
     - proxychains
     - proxy
