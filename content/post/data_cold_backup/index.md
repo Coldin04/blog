@@ -24,11 +24,11 @@ tags:
 
 当时我操作的方法也很土，使用`Ventoy`启动了我移动硬盘中的`Win to go`系统，然后在`Win to go`系统中安装了`DiskGenius`，最后使用`DiskGenius`恢复数据。这种方法的好处是不用拆机，但因为在老电脑上运行，速度显然受到了老电脑机能的限制。不过经过一个下午的时间，经过筛选后，也找到了不少资料。
 
-![正在使用DiskGenius恢复数据的老电脑](diskgeniusjpg)
+![正在使用DiskGenius恢复数据的老电脑](diskgenius.jpg)
 
 从DiskGenius中恢复的资料，我将其放在了移动硬盘中，但这些资料没有文件名，需要手动整理。为了不让自己太累，我直接让Copilot辅助我写了一个小程序，来用于将word文档中的标题作为文件名。这样，我就可以直接通过文件名来找到我想要的资料了。
 
-![借助Copilot编写脚本](scipt_code.png)
+![借助Copilot编写脚本](script_code.png)
 
 同样，表格文件也借助了差不错的方法解决。自此，资料初步整理完成。
 
