@@ -6,6 +6,10 @@ links:
     description: 一个有点水的笔记，致力于分享自己的知识
     website: https://note.coldin.top
     image: https://note.coldin.top/logo.png
+  - title: Lemonkooi~
+    description: 是 Mango 但不是食物
+    website: https://lemonkoi.one
+    image: https://cravatar.cn/avatar/22b242a28bb848f2629f2a636bba9c03?s=1000
   - title: agou同志的主页
     description: "***的狗狗，据说和nmteam有关"
     website: https://agou.im/
