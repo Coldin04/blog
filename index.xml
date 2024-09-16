@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Coldin04's Blog</title><link>https://blog.coldin.top/</link><description>Recent content on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Sep 2024 18:00:00 +0800</lastBuildDate><atom:link href="https://blog.coldin.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog翻新，更优雅的界面，更舒适的工作方式</title><link>https://blog.coldin.top/p/new_blog/</link><pubDate>Mon, 29 Apr 2024 09:00:00 +0800</pubDate><guid>https://blog.coldin.top/p/new_blog/</guid><description>&lt;p>前段时间正在愉快的对电脑进行维护，但一不小心手滑敲错了命令，导致我用了两年的Windows系统盘被无意清空。因为之前有备份文件的习惯，所以对我的损失并不算大。但由于Blog的源文件存储在家里的机械盘中，找回不那么方便，加上感觉之前的主题有些较旧了，索性打算好好的重建一下Blog。&lt;/p>
+&lt;h2 id="搜寻适合自己的静态网站生成器">搜寻适合自己的静态网站生成器
+&lt;/h2>&lt;p>开始的时候，我仍打算使用Hexo作为博客的生成器，于是考虑搜寻一个好看且较贴切个人风格的主题。但无意中看到了 Hugo，便本着尝鲜的想法，打开的Hugo的官网进行查看。于是第一步，就开始挑选主题。说起来可能有那么些不可思议，我第一眼便相中了 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>Hugo Theme Stack&lt;/a> 这个主题，设计风格简单明了，也没有多余的元素，而且更好的是，他可以直接使用 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack-starter" target="_blank" rel="noopener"
+>Hugo Theme Stack Starter&lt;/a> 导入自己的Github仓库，并可以借助 Github Action 进行自动编译文章。这样一来，确实可以简化不少的工作流程，方便我随时随地使用CodeSpace更新文章。就好比这篇文章，我就使用Surface远程CodeSpace进行编辑的。&lt;/p>
+&lt;h2 id="配置网站和熟悉逻辑">配置网站和熟悉逻辑
+&lt;/h2>&lt;p>这部分其实没那么多好说的，我就是按照自己的风格进行调试，你可以在Github Commits里面看到我相关操作，因此没那么多可以聊的，按照帮助配置就好。&lt;/p>
+&lt;h2 id="迁移文章和遇到的问题">迁移文章和遇到的问题
+&lt;/h2>&lt;p>网站按照自己的想法配置好后，就到了迁移文章的时候。前面说过，因为源文件丢失了，所以网站内容我都是直接从老Blog
+复制粘贴下来的。因为前面的文章没有引用图片，所以开始并没有注意到问题，直到我开始迁移《记一次数据恢复和数据冷备份》 这篇文章的时候，才发现通过外链引用的图片居然打不开（心想，wtf，难道这个框架不支持图片的预览嘛），开始以为是配置没有开导致的，直到我开始看官方文档，直到我注意到&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">WARNING
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Inserting external images is supported, but it is not recommended.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Features like image gallery and image zooming will not work with external images. Those feature needs to know the image&amp;#39;s dimensions, which is not possible with external images.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>啊？我当时注意到这个的时候还挺震惊的，因为我的习惯就是从外链引用图片，这下子确实麻烦起来了,甚至让我有了放弃使用的想法。不过好在经过简单搜索，发现了 &lt;a class="link" href="https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study" target="_blank" rel="noopener"
+>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？&lt;/a> 这篇文章。&lt;/p>
+&lt;p>不过即使找到了解决方案，也没法修改。显而易见的是，我的仓库里并没有&lt;code>layouts&lt;/code>文件夹，更别谈去修改了。我又开始打起了退堂鼓，不过之后又进行了一番搜索，发现官方的仓库中也说明了这一情况，但没说明白。通过&lt;code>Hugo Modules&lt;/code> 方式加载，可以通过新建这个目录，本地的文件会自动覆盖编译时加载的文件。这个设计太赞了！于是，按照解决方案修改好之后，在&lt;code>config.toml&lt;/code>中按照规则关闭&lt;code>imageProcessing.content&lt;/code>改成&lt;code>false&lt;/code>并添加有关项目，再次测试发现外链图片可正常查看了。&lt;/p>
+&lt;h2 id="hugo的优势">Hugo的优势
+&lt;/h2>&lt;p>用一个字形容就是“快”，而且并不需要像&lt;code>node.js&lt;/code>那样在每次安装依赖时都弄得很复杂。这个主题支持使用Github Action编译，也使得我在每次写完之后可以只管上传就行，流程方面也能更快了。总而言之，这个工作流让我很满意。下一步来说，我应该会考虑专注于创作点优质的Blog内容，而系统化的内容仍会在 &lt;a class="link" href="https://note.coldin.top" target="_blank" rel="noopener"
+>酷丁的笔记&lt;/a> 中持续更新。&lt;/p></description></item><item><title>记一次数据恢复和数据冷备份</title><link>https://blog.coldin.top/p/data_cold_backup/</link><pubDate>Mon, 29 Jan 2024 09:00:00 +0800</pubDate><guid>https://blog.coldin.top/p/data_cold_backup/</guid><description>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>最初，家里的一些老照片和老的资料是放在老电脑的硬盘中。不巧的是，老电脑的硬盘可能是被误格式化，导致资料丢失。刚放假的时候，出于想尝试的目的，以及想要找回一些资料的目的，我尝试了一下数据恢复，自此开始，我开始构建自己的资料冷备份体系。&lt;/p>
+&lt;p>首先说明，我对资料的备份和恢复懂的并不多，这里记录的方法可能是错的或者并不是最适合你的方法，只是希望记录下来，以便以后查阅。欢迎各位大佬指正。&lt;/p>
+&lt;h2 id="数据恢复">数据恢复
+&lt;/h2>&lt;p>因为数据之前有部分被覆写，加上硬盘也被重新格式化了，因此，我选择使用&lt;code>DiskGenius&lt;/code>恢复数据，最终，我成功找到了不少资料和一些照片。但因为数据部分被覆盖，很多照片都丢失了。由此可见，数据无价并不是闹着玩的。&lt;/p>
+&lt;p>当时我操作的方法也很土，使用&lt;code>Ventoy&lt;/code>启动了我移动硬盘中的&lt;code>Win to go&lt;/code>系统，然后在&lt;code>Win to go&lt;/code>系统中安装了&lt;code>DiskGenius&lt;/code>，最后使用&lt;code>DiskGenius&lt;/code>恢复数据。这种方法的好处是不用拆机，但因为在老电脑上运行，速度显然受到了老电脑机能的限制。不过经过一个下午的时间，经过筛选后，也找到了不少资料。&lt;/p>
+&lt;p>&lt;img src="https://blog.coldin.top/p/data_cold_backup/diskgenius.jpg"
+width="1920"
+height="1080"
+loading="lazy"
+alt="正在使用DiskGenius恢复数据的老电脑"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+&lt;/p>
+&lt;p>从DiskGenius中恢复的资料，我将其放在了移动硬盘中，但这些资料没有文件名，需要手动整理。为了不让自己太累，我直接让Copilot辅助我写了一个小程序，来用于将word文档中的标题作为文件名。这样，我就可以直接通过文件名来找到我想要的资料了。&lt;/p>
+&lt;p>&lt;img src="https://blog.coldin.top/p/data_cold_backup/script_code.png"
+width="3840"
+height="2088"
+loading="lazy"
+alt="借助Copilot编写脚本"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="441px"
+>
+&lt;/p>
+&lt;p>同样，表格文件也借助了差不错的方法解决。自此，资料初步整理完成。&lt;/p>
+&lt;h2 id="冷备份老资料">冷备份老资料
+&lt;/h2>&lt;p>显然，放在我的移动硬盘中以及电脑中也不是长久之际，我有定期清理空间的习惯。另外，移动硬盘存在丢失的风险。在网上浏览一圈之后，看到了“冷备份”这个词。由此，我开始挑选备份介质。&lt;/p>
+&lt;h3 id="挑选介质">挑选介质
+&lt;/h3>&lt;p>首先必须明确一点，目前因为预算方面问题，我的预算并不太够。幸运的是，目前来说，我需要冷备份的资料并不是很多，也并不需要太大的储存空间。不过考虑到介质可能很久才打开检查一次，我根据需要选择机械硬盘。&lt;/p>
+&lt;p>可能去看大部分博主的推荐，都会告诉你，目前4TB以下的机械硬盘都不那么推荐。不过考虑到预算和上述的实际需求，经过多方面学习，最终选择了2块全新的西数的1TB紫盘来完成我的任务。&lt;/p>
+&lt;p>&lt;img src="https://blog.coldin.top/p/data_cold_backup/wd_disk.jpg"
+width="1280"
+height="1707"
+loading="lazy"
+alt="我所挑选的硬盘"
+class="gallery-image"
+data-flex-grow="74"
+data-flex-basis="179px"
+>
+&lt;/p>
+&lt;p>读取硬盘，目前我选用的是绿联的硬盘盒。建议替换自带的电源，但我目前预算不足，没有替换。&lt;/p>
+&lt;h3 id="拷贝资料">拷贝资料
+&lt;/h3>&lt;p>我没有组Raid的条件，故我选择手动“镜像”两个盘的文件。我先拆封了一个盘，在电脑上整理好所有资料，使用fastcopy将资料复制到硬盘目录。使用fastcopy纯粹是因为他可以在拷贝资料的时候校验，拷贝大文件的时候也相对较快，体验较好。&lt;/p>
+&lt;p>在弹出硬盘时，注意先在电脑上选择弹出，等待数秒保证硬盘停转和磁头归位后，关闭硬盘盒电源并拔出硬盘。这样做，一方面可以防止硬盘还在读写，另一方面，磁头离开硬盘盘面后，可以防止移动时磁头划伤硬盘，变成“唱片机”。&lt;/p>
+&lt;h3 id="定期查看和写入资料">定期查看和写入资料
+&lt;/h3>&lt;p>一般来说，每个阶段之后，都需要将一些资料进行备份。我建议周期是半年到一年定期检查下。当然，有重要资料的时候，也别忘记写入，时间有限的话，也可以一同检查下硬盘的smart值。&lt;/p>
+&lt;p>对于用于备份的机械硬盘来说，smart值还挺重要的，有时候smart出现警告后，要及时考虑转移资料和选择新硬盘进行备份。&lt;/p>
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;p>对于每个人来说，都有或多或少的重要资料。永远要记住：“数据无价”。定期做好数据备份是一项不错的选择，不要等到失去了再追悔莫及。&lt;/p>
+&lt;p>这里有个小插曲，我在3月份的时候，无意中格式化了Windows系统盘。因为备份习惯，导致我的资料和进度丢失并不算太多，所以还是那句话，数据无价，勤备份才是王。&lt;/p></description></item><item><title>解决mysql_secure_installation ERROR 2002</title><link>https://blog.coldin.top/p/mysql_error_2002/</link><pubDate>Tue, 21 Nov 2023 21:00:00 +0800</pubDate><guid>https://blog.coldin.top/p/mysql_error_2002/</guid><description>&lt;h2 id="问题描述">问题描述
+&lt;/h2>&lt;p>在使用mysql_secure_installation命令时，出现以下错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">ERROR&lt;/span> &lt;span class="mi">2002&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">HY000&lt;/span>&lt;span class="p">):&lt;/span> &lt;span class="n">Can&lt;/span>&lt;span class="s1">&amp;#39;t connect to local MySQL server through socket &amp;#39;&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sock&lt;/span>&lt;span class="s1">&amp;#39; (2 &amp;#34;No such file or directory&amp;#34;)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="问题分析">问题分析
+&lt;/h2>&lt;p>显而易见的是，1mysql_secure_installation1命令无法连接到本地的MySQL服务，原因是MySQL服务没有启动。&lt;/p>
+&lt;p>但在之前的操作步骤中，已经使用了&lt;code>systemctl start mariadb&lt;/code>命令启动了MySQL服务，为什么还是无法连接呢？&lt;/p>
+&lt;p>进入目录查看可知，在此目录下无&lt;code>/var/lib/mysql/mysql.sock&lt;/code>文件。&lt;/p>
+&lt;p>使用&lt;code> find / -name 'mysql.sock'&lt;/code> 命令查找，发现文件在&lt;code>/tmp/mysql.sock&lt;/code>（部分在&lt;code>/tmp/sys…/tmp/mysql.sock&lt;/code> 之下）。&lt;/p>
+&lt;h2 id="解决方法">解决方法
+&lt;/h2>&lt;p>先使用 &lt;code>find / -name 'mysql.sock'&lt;/code> 命令查找mysql.sock文件，找到文件所在目录。&lt;/p>
+&lt;p>复制这个目录，为其创建软链接，如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">ln&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">tmp&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">sys&lt;/span>&lt;span class="o">.../&lt;/span>&lt;span class="n">tmp&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sock&lt;/span>&lt;span class="err">（这里写的是你复制的目录）&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sock&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再次尝试使用&lt;code>mysql_secure_installation&lt;/code>命令，问题解决。&lt;/p>
+&lt;h2 id="多说两句">多说两句
+&lt;/h2>&lt;p>其实，在新版的Mysql/MariaDB中，修改密码的方式有所变更，使用mysql_secure_installation命令修改密码的方式已经不再适用。&lt;a class="link" href="https://blog.xzr.moe/archives/4/" target="_blank" rel="noopener"
+>具体可以看这里&lt;/a>&lt;/p>
+&lt;p>新版初始化可以考虑手动初始化:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mysql(如果之前有密码则加上有关内容)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ALTER USER &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;新密码&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">flush privileges;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">exit;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>配置ProxyChains，使得终端可以使用代理</title><link>https://blog.coldin.top/p/proxychains/</link><pubDate>Mon, 30 Oct 2023 22:00:00 +0800</pubDate><guid>https://blog.coldin.top/p/proxychains/</guid><description>&lt;p>兄弟这两天忽然找我，他们实验室服务器因为配置原因，无法直接访问外网，但是他们需要下载一些东西，于是就想到了使用代理。因为一台机器中存在多个用户，自然不能在系统中直接配置代理，经过一翻查找，就想到了使用proxychains。&lt;/p>
+&lt;h1 id="基本环境">基本环境
+&lt;/h1>&lt;p>简介也说明了，因为实验室的服务器提供给多人使用，部分用户是没有管理员权限的（避免因此造成不必要的麻烦），所以不能在系统中直接配置代理，这样一方面是对路由资源会造成损耗，另一方面，也不太方便在代理和直连之间切换。所以，使用proxychains是一个不错的选择。&lt;/p>
+&lt;h1 id="安装proxychains">安装proxychains
+&lt;/h1>&lt;p>因为实验室服务器使用的是Debian，所以使用apt安装即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt install proxychains
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="配置proxychains">配置proxychains
+&lt;/h1>&lt;p>一般来说，proxychains的配置文件在/etc/proxychains.conf，但是我们强调，因为上述特殊环境，我们需要在不同用户下使用不同的配置，所以我们需要在用户目录下创建配置文件，这样就可以实现不同用户使用不同的配置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim ~/.proxychains/proxychains.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在这个配置文件中，我们需添加以下内容:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[ProxyList]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socks5 127.0.0.1 1080 username password
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中，username和password是你的代理服务器的用户名和密码，如果没有，可以不填写。服务器地址和端口可按照需求修改。&lt;/p>
+&lt;h1 id="使用proxychains">使用proxychains
+&lt;/h1>&lt;p>使用proxychains很简单，只需要在命令前加上proxychains即可，例如:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">proxychains git clone https://github.com/Coldin04/NoteShare.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者，也有另外一种方式：&lt;code>proxychains bash&lt;/code>&lt;/p>
+&lt;p>这样，就可以在一个新的bash中使用代理了。&lt;/p>
+&lt;h1 id="测试连通性">测试连通性：
+&lt;/h1>&lt;p>注意：如果使用的是socks5代理，因为socks5代理处于第五层，所以ping命令是无法使用的，只能使用curl或者wget等命令。
+&lt;code>proxychains curl cip.cc&lt;/code>&lt;/p>
+&lt;h1 id="参考资料">参考资料
+&lt;/h1>&lt;p>&lt;a class="link" href="https://github.com/haad/proxychains" target="_blank" rel="noopener"
+>[1] proxychains-ng&lt;/a> &lt;br>
+&lt;a class="link" href="https://github.com/haad/proxychains" target="_blank" rel="noopener"
+>[2] Linux 配置 ProxyChains 本地代理&lt;/a>&lt;/p></description></item><item><title>新站上线！用Vuepress搭建的个人笔记库</title><link>https://blog.coldin.top/p/note-news/</link><pubDate>Mon, 30 Oct 2023 22:00:00 +0800</pubDate><guid>https://blog.coldin.top/p/note-news/</guid><description>&lt;p>自从转到计算机专业之后，因为很多命令在电脑上执行，故开始尝试使用了Obsidian记录笔记。一个学期下来，也攒了不少内容。本着分享的精神，我最初的想法是将Obsidian仓库发布，也方便对笔记进行备份。后来发现，Obsidian的第三方发布服务均有一定的缺陷，而官方发布服务又需要付费，价格又不太理想，很长一段时间都放弃去做这个事情了。&lt;/p>
+&lt;p>后来，在看到一些文档的的时候，发现了很多人都使用这一套“风格”进行搭建，如&lt;a class="link" href="https://xiaolincoding.com/" target="_blank" rel="noopener"
+>小林Coding&lt;/a> 、&lt;a class="link" href="https://xiaolincoding.com/" target="_blank" rel="noopener"
+>ArchLinux简明指南&lt;/a> 等。发现均以Vuepress为基础进行搭建，于是我也开始尝试使用Vuepress搭建自己的笔记库。（其实之前考虑过Notion等工具，但后来放弃）&lt;/p>
+&lt;h2 id="vuepress">Vuepress
+&lt;/h2>&lt;p>VuePress 由两部分组成：第一部分是一个极简静态网站生成器 (opens new window)，它包含由 Vue 驱动的主题系统和插件 API，另一个部分是为书写技术文档而优化的默认主题，它的诞生初衷是为了支持 Vue 及其子项目的文档需求。&lt;/p>
+&lt;p>更多可以看&lt;a class="link" href="https://vuepress.vuejs.org/zh/" target="_blank" rel="noopener"
+>官方文档&lt;/a>。&lt;/p>
+&lt;h2 id="搭建过程">搭建过程
+&lt;/h2>&lt;h3 id="小插曲">小插曲
+&lt;/h3>&lt;p>其实，Vuepress的安装非常简单，只需要使用yarn即可:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir vuepress-starter &amp;amp;&amp;amp; cd vuepress-starter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yarn init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yarn add -D vuepress
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>当然，也别急着就开始了，想让网站更丰富，可以考虑安装第三方的主题。当然，如果想要了解更多安装和配置的细节，也可以进入&lt;a class="link" href="https://vuepress.vuejs.org/zh/guide/getting-started.html" target="_blank" rel="noopener"
+>官方文档&lt;/a> 了解更多细节。&lt;/p>
+&lt;p>我使用的是&lt;a class="link" href="https://theme-hope.vuejs.press/zh/" target="_blank" rel="noopener"
+>vuepress-theme-hope&lt;/a> 这个主题，这个主题主题很大程度上继承了 VuePress 默认主题的配置，并在此基础上添加了大量功能与布局优化。而且，这个主题也有blog功能，有兴趣的话可以了解一下。&lt;/p>
+&lt;p>标题说这是小插曲，那也就顺便聊聊。当时我拿到手，也是一股脑的按照上面的步骤安装了&lt;code>Vuepress&lt;/code>，顺便熟悉了一下基本配置。我有个小习惯，当我正在研究的或者正在学习的东西（前提是感兴趣），我会去B站搜索看看别人的视频，或者去搜索引擎上以这个名称为关键词看看别人的配置过程这样的。无意就发现了&lt;code>Vuepress-theme-hope&lt;/code>和&lt;code>Vuepress-theme-repo&lt;/code>这两个主题。&lt;/p>
+&lt;p>当我点开了这两者的搜索条目，才发现这两个主题并非像Wordpress或者Hexo那样导入进去，或者放入一个文件夹就能用，而是单独通过包管理器（pnpm或yarn）进行新建。后来，我含泪去转移了已经整理完成的笔记，不过这些的工作量也并不大就是。&lt;/p>
+&lt;h2 id="正式开始">正式开始
+&lt;/h2>&lt;h3 id="安装">安装
+&lt;/h3>&lt;p>建议参考：&lt;a class="link" href="https://theme-hope.vuejs.press/zh/get-started/" target="_blank" rel="noopener"
+>小白教程&lt;/a>
+首先，保证安装了Node.js、yarn\Pnpm和VS Code（或其他编辑器），然后根据提示安装即可。&lt;/p>
+&lt;p>但我既然在这里提到这件事，说明我也遇到了一些问题，这里也顺便记录一下。&lt;/p>
+&lt;p>在运行时，我首先遇到了这样的错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Error&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">ERR_MODULE_NOT_FOUND&lt;/span>&lt;span class="p">]:&lt;/span> &lt;span class="nx">Cannot&lt;/span> &lt;span class="nx">find&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">katex&lt;/span>&lt;span class="err">&amp;#39;&lt;/span> &lt;span class="nx">imported&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="nx">home&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">coldin04&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">Documents&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">webnote&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">docs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">node_modules&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="nx">mdit&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">plugin&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">katex&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">lib&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">index&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">mjs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">at&lt;/span> &lt;span class="nx">new&lt;/span> &lt;span class="nf">NodeError&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">node&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nx">internal&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">errors&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">406&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">......&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个错误的原因是因为&lt;code>vuepress-theme-hope&lt;/code>的依赖包&lt;code>katex&lt;/code>没有找到，查询后发现，可通过:&lt;code>yarn add katex&lt;/code>解决。&lt;/p>
+&lt;blockquote>
+&lt;p>tips:&lt;br>之后查询到，这个依赖包是用于数学公式的，如果不需要，可以不安装，去配置中将其注释掉即可。&lt;/p>
+&lt;/blockquote>
+&lt;p>然后，我又遇到了这样的错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Error: Cannot find module &amp;#39;reveal.js/dist/reveal.css&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Require stack:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- /home/coldin04/Documents/xxx/@mr-hope/vuepress-plugin-pwa/lib/client.js
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .....
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个错误的原因是因为&lt;code>vuepress-theme-hope&lt;/code>的依赖包&lt;code>reveal.js&lt;/code>没有找到，查询后发现，可通过:&lt;code>yarn add reveal.js&lt;/code>解决。&lt;/p>
+&lt;p>此时，如果执行&lt;code>yarn dev&lt;/code>，若能够正常运行，则即可进行下一步进行仔细的配置了。当然，如果还有别的运行问题，也可以借助搜索引擎或类似于ChatGPT语言大模型进行解决。&lt;/p>
+&lt;h3 id="配置">配置
+&lt;/h3>&lt;p>因为Vuepress也配置过好几天了，具体也无法记的很详细了，这里就简单的说一下。当然，每个人的风格不同，配置是自然不同的，我的操作更多的是提供思路，请不要被我的步骤局限住了。&lt;/p>
+&lt;h4 id="base">base
+&lt;/h4>&lt;p>首当其冲的是配置这个选项，可参考&lt;a class="link" href="https://vuejs.press/zh/reference/config.html#base" target="_blank" rel="noopener"
+>Base&lt;/a>。这个选项是用于设置网站的基础路径，如果你准备发布到 &lt;code>https://.github.io//&lt;/code> ，也就是说你的仓库地址是 &lt;code>https://github.com//&lt;/code> ，则将 base 设置为 “//“。&lt;/p>
+&lt;h4 id="导航栏">导航栏
+&lt;/h4>&lt;p>这个选项是用于设置导航栏的.&lt;/p>
+&lt;p>显而易见的是，我的导航栏并没有什么特殊的设置，只是简单把写过的笔记进行分类整理，然后放在了导航栏中。&lt;/p>
+&lt;h4 id="侧边栏">侧边栏
+&lt;/h4>&lt;p>对于侧边栏，我是选择了通过文件结构生成，毕竟因为是笔记站，这样配置起来，可以更方便的去查找笔记。不过随着之后内容的增多，也可能会考虑对不同笔记目录单独生成不同的侧边栏。&lt;/p>
+&lt;h4 id="评论">评论
+&lt;/h4>&lt;p>&lt;del>主要是因为懒&lt;/del> ，我选择直接将相关配置注释，关闭评论区，之后可能会考虑使用第三方评论系统。&lt;/p>
+&lt;h4 id="seo">SEO
+&lt;/h4>&lt;p>这个主题的一大优点，便是自带SEO功能，且默认是开启的，可参考SEO。&lt;/p>
+&lt;p>对于其他功能，我也并没有去仔细关注，毕竟这个主题的配置项还是很多的，而且也不是每个人都需要的，对于笔记站来说，我觉得这些功能也并不是很重要，在之后的使用中，如果有需要，再去配置也不迟。&lt;/p>
+&lt;h2 id="结语">结语
+&lt;/h2>&lt;p>这个笔记站的搭建，也是我第一次使用Vuepress，也是第一次使用Vue，所以在搭建过程中，也遇到了很多问题，也是在解决问题的过程中，学习了很多知识。在这里，也希望能够帮助到其他人，也希望能够帮助到自己。&lt;/p>
+&lt;p>在这次的配置过程中，确实让我整个人都得到了一个放松。前段时间状态确实不太行。在这次配置的过程中不断面对问题，解决问题，让我感到了久违的满足感和获得感。也让我重新找回了学习的乐趣。&lt;/p>
+&lt;p>感谢vuepress、vuepress-theme-hope等开源项目的开发者，感谢他们的付出，让我能够使用这么好的工具。最后，也感谢你能够看到这里，希望你能够喜欢这个笔记站。&lt;/p></description></item><item><title>归档</title><link>https://blog.coldin.top/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://blog.coldin.top/archives/</guid><description/></item><item><title>搜索</title><link>https://blog.coldin.top/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.coldin.top/search/</guid><description/></item><item><title>友链</title><link>https://blog.coldin.top/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.coldin.top/links/</guid><description>&lt;p>给 &lt;a class="link" href="mailto:me@coldin.top" >me@coldin.top&lt;/a> (请注明来意，可能会被忽略) 发邮件或联系TG &lt;a class="link" href="https://t.me/nice7x" target="_blank" rel="noopener"
+>@nice7x&lt;/a> ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">站点名称: 酷丁的主页
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">简介：一个羞涩的小朋友的自我介绍页面
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">链接：https://coldin.top
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">图片：https://coldin.top/avatar.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
