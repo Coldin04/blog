@@ -16,20 +16,18 @@ links:
     image: https://avatars.githubusercontent.com/u/55237525?v=4
   - title: Phrinky's Blog
     description: 阳光开朗的Ricky 的各种日常捏
-    website: https://blog.phrk.nl
-    image: https://blog.phrk.nl/images/profile.webp
-  - title: KK's Blog
+    website: https://rkk.moe
+    image: https://blog.rkk.moe/images/profile.webp
+  - title: KK's Blog（暂不可用）
     description: 至少我不再寂寞，你眼神能再闪烁
     website: https://kkkrza.link/
-    image: https://s1.ax1x.com/2023/07/24/pCOmxrd.png
   - title: 深海小涛's Blog
     description: 又一个技术博客
     website: https://xtaolink.cn/
     image: https://xtaolink.cn/img/avatar.jpg
-  - title: 小熊的博客
+  - title: 小熊的博客（暂不可用）
     description: 是害羞的小熊的技术博客
     website: https://bearcurb.blog/
-    image: https://bearcurb.blog/images/avatar.png
   - title: Lingxh's Blog
     description: 是贴心又可爱的lingxh！
     website: https://blog.lingxh.com/
