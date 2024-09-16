@@ -46,6 +46,10 @@ links:
     description: 世界上本没有博客，直到有了程序员
     website: https://leziblog.com/
     image: https://leziblog.com/wp-content/uploads/2023/01/1674400634-QQ%E5%9B%BE%E7%89%8720230122231613.jpg
+  - title: 刻晴♡マイワイフ
+    description: 是大佬！心有所向，日复一日，必有精进
+    website: https://keqing.moe
+    image: https://keqing.moe/res/favicon.png
 menu:
     main: 
         weight: 4
