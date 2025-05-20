@@ -48,6 +48,10 @@ links:
     description: 是大佬！心有所向，日复一日，必有精进
     website: https://keqing.moe
     image: https://keqing.moe/res/favicon.png
+  - title: AcoFork
+    description: Protect What You Love!
+    website: https://afo.im/
+    image: https://avatars.githubusercontent.com/u/180811437
 menu:
     main: 
         weight: 4
@@ -57,7 +61,7 @@ menu:
 comments: false
 ---
 
-给 me@coldin.top (请注明来意，可能会被忽略) 发邮件或联系TG [@nice7x](https://t.me/nice7x) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
+给 me@coldin.top (请注明来意，可能会被忽略) 发邮件或 [联系TG](https://t.me/on0i7) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
 ```
 站点名称: 酷丁的主页
 简介：一个羞涩的小朋友的自我介绍页面
