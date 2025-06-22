@@ -52,10 +52,10 @@ links:
     description: Protect What You Love!
     website: https://afo.im/
     image: https://avatars.githubusercontent.com/u/180811437
-    - title: SaltedFishes
-      description: 「Tragedy is coming 'as I wish'......」
-      website: https://saltedfishes.com
-      image: https://saltedfishes.com/images/avatar.webp
+  - title: SaltedFishes
+    description: 「Tragedy is coming 'as I wish'......」
+    website: https://saltedfishes.com
+    image: https://saltedfishes.com/images/avatar.webp
 menu:
     main: 
         weight: 4
