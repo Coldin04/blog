@@ -31,7 +31,7 @@ links:
   - title: Lingxh's Blog
     description: 是贴心又可爱的lingxh！
     website: https://blog.lingxh.com/
-    image: https://static.lingxh.net/img/IMG_20240111_143435.jpg
+    image: https://avatars.githubusercontent.com/u/59961232?v=4
   - title: MlgmXyysd's Cat Nest
     description: 欢迎来猫窝，喵。
     website: https://www.neko.ink/
