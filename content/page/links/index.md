@@ -55,7 +55,7 @@ links:
   - title: SaltedFishes
     description: 「Tragedy is coming 'as I wish'......」
     website: https://saltedfishes.com
-    image: https://saltedfishes.com/images/avatar.web
+    image: https://saltedfishes.com/images/avatar.webp
   - title: Yang's Blog
     description: Make a dent in the universe.
     website: https://kaeshi.top
