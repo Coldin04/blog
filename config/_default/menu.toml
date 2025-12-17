@@ -18,7 +18,7 @@ icon = "brand-github"
 [[social]]
 identifier = "home"
 name = "Home"
-url = "https://coldin.top"
+url = "https://cold04.com"
 
 [social.params]
 icon = "home"
@@ -26,7 +26,7 @@ icon = "home"
 [[social]]
 identifier = "note"
 name = "Note"
-url = "https://note.coldin.top"
+url = "https://note.cold04.com"
 
 [social.params]
 icon = "notebook"
@@ -35,7 +35,7 @@ icon = "notebook"
 [[main]]
 identifier = "note"
 name = "笔记仓库"
-url = "https://note.coldin.top"
+url = "https://note.cold04.com"
 [main.params]
 icon = "notebook"
 newtab = true

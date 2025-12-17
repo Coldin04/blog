@@ -4,8 +4,8 @@ slug: "links"
 links:
   - title: 酷丁的笔记站
     description: 一个有点水的笔记，致力于分享自己的知识
-    website: https://note.coldin.top
-    image: https://note.coldin.top/logo.png
+    website: https://note.cold04.com
+    image: https://note.cold04.com/logo.png
   - title: Lemonkooi~
     description: 是 Mango 但不是食物
     website: https://lemonkoi.one
@@ -69,10 +69,10 @@ menu:
 comments: false
 ---
 
-给 me@coldin.top (请注明来意，可能会被忽略) 发邮件或 [联系TG](https://t.me/on0i7) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
+给 me@cold04.com (请注明来意，可能会被忽略) 发邮件或 [联系TG](https://t.me/on0i7) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
 ```
 站点名称: 酷丁的主页
 简介：一个羞涩的小朋友的自我介绍页面
-链接：https://coldin.top
-图片：https://coldin.top/avatar.png
+链接：https://cold04.com
+图片：https://cold04.com/avatar.png
 ```

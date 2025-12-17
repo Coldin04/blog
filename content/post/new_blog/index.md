@@ -44,4 +44,4 @@ Features like image gallery and image zooming will not work with external images
 
 ## Hugo的优势
 
-用一个字形容就是“快”，而且并不需要像`node.js`那样在每次安装依赖时都弄得很复杂。这个主题支持使用Github Action编译，也使得我在每次写完之后可以只管上传就行，流程方面也能更快了。总而言之，这个工作流让我很满意。下一步来说，我应该会考虑专注于创作点优质的Blog内容，而系统化的内容仍会在 [酷丁的笔记](https://note.coldin.top) 中持续更新。
+用一个字形容就是"快"，而且并不需要像`node.js`那样在每次安装依赖时都弄得很复杂。这个主题支持使用Github Action编译，也使得我在每次写完之后可以只管上传就行，流程方面也能更快了。总而言之，这个工作流让我很满意。下一步来说，我应该会考虑专注于创作点优质的Blog内容，而系统化的内容仍会在 [酷丁的笔记](https://note.cold04.com) 中持续更新。
