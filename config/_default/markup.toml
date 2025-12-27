@@ -1,5 +1,11 @@
 # Markdown renderer configuration
-[goldmark.renderer]
+[goldmark.extensions.passthrough]
+enable = true
+
+[goldmark.extensions.passthrough.delimiters]
+block = [["$$", "$$"]]
+inline = [["$", "$"]]
+
 unsafe = true
 
 [tableOfContents]
