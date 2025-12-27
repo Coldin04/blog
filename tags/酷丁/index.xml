@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酷丁 on Coldin04's Blog</title><link>https://blog.cold04.com/tags/%E9%85%B7%E4%B8%81/</link><description>Recent content in 酷丁 on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 30 Oct 2023 22:00:00 +0800</lastBuildDate><atom:link href="https://blog.cold04.com/tags/%E9%85%B7%E4%B8%81/index.xml" rel="self" type="application/rss+xml"/><item><title>新站上线！用Vuepress搭建的个人笔记库</title><link>https://blog.cold04.com/p/note-news/</link><pubDate>Mon, 30 Oct 2023 22:00:00 +0800</pubDate><guid>https://blog.cold04.com/p/note-news/</guid><description>&lt;p&gt;自从转到计算机专业之后，因为很多命令在电脑上执行，故开始尝试使用了Obsidian记录笔记。一个学期下来，也攒了不少内容。本着分享的精神，我最初的想法是将Obsidian仓库发布，也方便对笔记进行备份。后来发现，Obsidian的第三方发布服务均有一定的缺陷，而官方发布服务又需要付费，价格又不太理想，很长一段时间都放弃去做这个事情了。&lt;/p&gt;
+&lt;p&gt;后来，在看到一些文档的的时候，发现了很多人都使用这一套“风格”进行搭建，如&lt;a class="link" href="https://xiaolincoding.com/" target="_blank" rel="noopener"
+&gt;小林Coding&lt;/a&gt; 、&lt;a class="link" href="https://xiaolincoding.com/" target="_blank" rel="noopener"
+&gt;ArchLinux简明指南&lt;/a&gt; 等。发现均以Vuepress为基础进行搭建，于是我也开始尝试使用Vuepress搭建自己的笔记库。（其实之前考虑过Notion等工具，但后来放弃）&lt;/p&gt;
+&lt;h2 id="vuepress"&gt;Vuepress
+&lt;/h2&gt;&lt;p&gt;VuePress 由两部分组成：第一部分是一个极简静态网站生成器 (opens new window)，它包含由 Vue 驱动的主题系统和插件 API，另一个部分是为书写技术文档而优化的默认主题，它的诞生初衷是为了支持 Vue 及其子项目的文档需求。&lt;/p&gt;
+&lt;p&gt;更多可以看&lt;a class="link" href="https://vuepress.vuejs.org/zh/" target="_blank" rel="noopener"
+&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id="搭建过程"&gt;搭建过程
+&lt;/h2&gt;&lt;h3 id="小插曲"&gt;小插曲
+&lt;/h3&gt;&lt;p&gt;其实，Vuepress的安装非常简单，只需要使用yarn即可:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir vuepress-starter &amp;amp;&amp;amp; cd vuepress-starter
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn init
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn add -D vuepress
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;当然，也别急着就开始了，想让网站更丰富，可以考虑安装第三方的主题。当然，如果想要了解更多安装和配置的细节，也可以进入&lt;a class="link" href="https://vuepress.vuejs.org/zh/guide/getting-started.html" target="_blank" rel="noopener"
+&gt;官方文档&lt;/a&gt; 了解更多细节。&lt;/p&gt;
+&lt;p&gt;我使用的是&lt;a class="link" href="https://theme-hope.vuejs.press/zh/" target="_blank" rel="noopener"
+&gt;vuepress-theme-hope&lt;/a&gt; 这个主题，这个主题主题很大程度上继承了 VuePress 默认主题的配置，并在此基础上添加了大量功能与布局优化。而且，这个主题也有blog功能，有兴趣的话可以了解一下。&lt;/p&gt;
+&lt;p&gt;标题说这是小插曲，那也就顺便聊聊。当时我拿到手，也是一股脑的按照上面的步骤安装了&lt;code&gt;Vuepress&lt;/code&gt;，顺便熟悉了一下基本配置。我有个小习惯，当我正在研究的或者正在学习的东西（前提是感兴趣），我会去B站搜索看看别人的视频，或者去搜索引擎上以这个名称为关键词看看别人的配置过程这样的。无意就发现了&lt;code&gt;Vuepress-theme-hope&lt;/code&gt;和&lt;code&gt;Vuepress-theme-repo&lt;/code&gt;这两个主题。&lt;/p&gt;
+&lt;p&gt;当我点开了这两者的搜索条目，才发现这两个主题并非像Wordpress或者Hexo那样导入进去，或者放入一个文件夹就能用，而是单独通过包管理器（pnpm或yarn）进行新建。后来，我含泪去转移了已经整理完成的笔记，不过这些的工作量也并不大就是。&lt;/p&gt;
+&lt;h2 id="正式开始"&gt;正式开始
+&lt;/h2&gt;&lt;h3 id="安装"&gt;安装
+&lt;/h3&gt;&lt;p&gt;建议参考：&lt;a class="link" href="https://theme-hope.vuejs.press/zh/get-started/" target="_blank" rel="noopener"
+&gt;小白教程&lt;/a&gt;
+首先，保证安装了Node.js、yarn\Pnpm和VS Code（或其他编辑器），然后根据提示安装即可。&lt;/p&gt;
+&lt;p&gt;但我既然在这里提到这件事，说明我也遇到了一些问题，这里也顺便记录一下。&lt;/p&gt;
+&lt;p&gt;在运行时，我首先遇到了这样的错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;Error&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;ERR_MODULE_NOT_FOUND&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Cannot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;katex&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;imported&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;coldin04&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;Documents&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;webnote&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;node_modules&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;mdit&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;plugin&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;katex&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;mjs&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;NodeError&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;internal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;406&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;......&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个错误的原因是因为&lt;code&gt;vuepress-theme-hope&lt;/code&gt;的依赖包&lt;code&gt;katex&lt;/code&gt;没有找到，查询后发现，可通过:&lt;code&gt;yarn add katex&lt;/code&gt;解决。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;tips:&lt;!-- raw HTML omitted --&gt;之后查询到，这个依赖包是用于数学公式的，如果不需要，可以不安装，去配置中将其注释掉即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;然后，我又遇到了这样的错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Error: Cannot find module &amp;#39;reveal.js/dist/reveal.css&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Require stack:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- /home/coldin04/Documents/xxx/@mr-hope/vuepress-plugin-pwa/lib/client.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; .....
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个错误的原因是因为&lt;code&gt;vuepress-theme-hope&lt;/code&gt;的依赖包&lt;code&gt;reveal.js&lt;/code&gt;没有找到，查询后发现，可通过:&lt;code&gt;yarn add reveal.js&lt;/code&gt;解决。&lt;/p&gt;
+&lt;p&gt;此时，如果执行&lt;code&gt;yarn dev&lt;/code&gt;，若能够正常运行，则即可进行下一步进行仔细的配置了。当然，如果还有别的运行问题，也可以借助搜索引擎或类似于ChatGPT语言大模型进行解决。&lt;/p&gt;
+&lt;h3 id="配置"&gt;配置
+&lt;/h3&gt;&lt;p&gt;因为Vuepress也配置过好几天了，具体也无法记的很详细了，这里就简单的说一下。当然，每个人的风格不同，配置是自然不同的，我的操作更多的是提供思路，请不要被我的步骤局限住了。&lt;/p&gt;
+&lt;h4 id="base"&gt;base
+&lt;/h4&gt;&lt;p&gt;首当其冲的是配置这个选项，可参考&lt;a class="link" href="https://vuejs.press/zh/reference/config.html#base" target="_blank" rel="noopener"
+&gt;Base&lt;/a&gt;。这个选项是用于设置网站的基础路径，如果你准备发布到 &lt;code&gt;https://.github.io//&lt;/code&gt; ，也就是说你的仓库地址是 &lt;code&gt;https://github.com//&lt;/code&gt; ，则将 base 设置为 “//“。&lt;/p&gt;
+&lt;h4 id="导航栏"&gt;导航栏
+&lt;/h4&gt;&lt;p&gt;这个选项是用于设置导航栏的.&lt;/p&gt;
+&lt;p&gt;显而易见的是，我的导航栏并没有什么特殊的设置，只是简单把写过的笔记进行分类整理，然后放在了导航栏中。&lt;/p&gt;
+&lt;h4 id="侧边栏"&gt;侧边栏
+&lt;/h4&gt;&lt;p&gt;对于侧边栏，我是选择了通过文件结构生成，毕竟因为是笔记站，这样配置起来，可以更方便的去查找笔记。不过随着之后内容的增多，也可能会考虑对不同笔记目录单独生成不同的侧边栏。&lt;/p&gt;
+&lt;h4 id="评论"&gt;评论
+&lt;/h4&gt;&lt;p&gt;&lt;del&gt;主要是因为懒&lt;/del&gt; ，我选择直接将相关配置注释，关闭评论区，之后可能会考虑使用第三方评论系统。&lt;/p&gt;
+&lt;h4 id="seo"&gt;SEO
+&lt;/h4&gt;&lt;p&gt;这个主题的一大优点，便是自带SEO功能，且默认是开启的，可参考SEO。&lt;/p&gt;
+&lt;p&gt;对于其他功能，我也并没有去仔细关注，毕竟这个主题的配置项还是很多的，而且也不是每个人都需要的，对于笔记站来说，我觉得这些功能也并不是很重要，在之后的使用中，如果有需要，再去配置也不迟。&lt;/p&gt;
+&lt;h2 id="结语"&gt;结语
+&lt;/h2&gt;&lt;p&gt;这个笔记站的搭建，也是我第一次使用Vuepress，也是第一次使用Vue，所以在搭建过程中，也遇到了很多问题，也是在解决问题的过程中，学习了很多知识。在这里，也希望能够帮助到其他人，也希望能够帮助到自己。&lt;/p&gt;
+&lt;p&gt;在这次的配置过程中，确实让我整个人都得到了一个放松。前段时间状态确实不太行。在这次配置的过程中不断面对问题，解决问题，让我感到了久违的满足感和获得感。也让我重新找回了学习的乐趣。&lt;/p&gt;
+&lt;p&gt;感谢vuepress、vuepress-theme-hope等开源项目的开发者，感谢他们的付出，让我能够使用这么好的工具。最后，也感谢你能够看到这里，希望你能够喜欢这个笔记站。&lt;/p&gt;</description></item></channel></rss>

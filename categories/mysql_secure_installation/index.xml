@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mysql_secure_installation on Coldin04's Blog</title><link>https://blog.cold04.com/categories/mysql_secure_installation/</link><description>Recent content in Mysql_secure_installation on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 21 Nov 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://blog.cold04.com/categories/mysql_secure_installation/index.xml" rel="self" type="application/rss+xml"/><item><title>解决mysql_secure_installation ERROR 2002</title><link>https://blog.cold04.com/p/mysql_error_2002/</link><pubDate>Tue, 21 Nov 2023 21:00:00 +0800</pubDate><guid>https://blog.cold04.com/p/mysql_error_2002/</guid><description>&lt;h2 id="问题描述"&gt;问题描述
+&lt;/h2&gt;&lt;p&gt;在使用mysql_secure_installation命令时，出现以下错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ERROR&lt;/span&gt; &lt;span class="mi"&gt;2002&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HY000&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;Can&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;t connect to local MySQL server through socket &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; (2 &amp;#34;No such file or directory&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="问题分析"&gt;问题分析
+&lt;/h2&gt;&lt;p&gt;显而易见的是，1mysql_secure_installation1命令无法连接到本地的MySQL服务，原因是MySQL服务没有启动。&lt;/p&gt;
+&lt;p&gt;但在之前的操作步骤中，已经使用了&lt;code&gt;systemctl start mariadb&lt;/code&gt;命令启动了MySQL服务，为什么还是无法连接呢？&lt;/p&gt;
+&lt;p&gt;进入目录查看可知，在此目录下无&lt;code&gt;/var/lib/mysql/mysql.sock&lt;/code&gt;文件。&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt; find / -name 'mysql.sock'&lt;/code&gt; 命令查找，发现文件在&lt;code&gt;/tmp/mysql.sock&lt;/code&gt;（部分在&lt;code&gt;/tmp/sys…/tmp/mysql.sock&lt;/code&gt; 之下）。&lt;/p&gt;
+&lt;h2 id="解决方法"&gt;解决方法
+&lt;/h2&gt;&lt;p&gt;先使用 &lt;code&gt;find / -name 'mysql.sock'&lt;/code&gt; 命令查找mysql.sock文件，找到文件所在目录。&lt;/p&gt;
+&lt;p&gt;复制这个目录，为其创建软链接，如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.../&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="err"&gt;（这里写的是你复制的目录）&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;再次尝试使用&lt;code&gt;mysql_secure_installation&lt;/code&gt;命令，问题解决。&lt;/p&gt;
+&lt;h2 id="多说两句"&gt;多说两句
+&lt;/h2&gt;&lt;p&gt;其实，在新版的Mysql/MariaDB中，修改密码的方式有所变更，使用mysql_secure_installation命令修改密码的方式已经不再适用。&lt;a class="link" href="https://blog.xzr.moe/archives/4/" target="_blank" rel="noopener"
+&gt;具体可以看这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;新版初始化可以考虑手动初始化:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mysql(如果之前有密码则加上有关内容)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ALTER USER &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;新密码&amp;#39;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;flush privileges;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;exit;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
