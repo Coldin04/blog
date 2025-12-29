@@ -60,6 +60,10 @@ links:
     description: Make a dent in the universe.
     website: https://kaeshi.top
     image: http://q.qlogo.cn/headimg_dl?dst_uin=2958445350&spec=640&img_type=jpg
+  - title: EastWind
+    description: 东风不与周郎便，铜雀春深锁二乔
+    website: https://blog.1wind.cn
+    image: https://github.com/WindyDante.png
 menu:
     main: 
         weight: 4
