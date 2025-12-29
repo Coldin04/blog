@@ -11,23 +11,25 @@ links:
     website: https://lemonkoi.one
     image: https://cravatar.cn/avatar/22b242a28bb848f2629f2a636bba9c03?s=1000
   - title: agou同志的主页
-    description: "***的狗狗，据说和nmteam有关"
+    description: "据说和nmteam有关"
     website: https://agou.im/
     image: https://avatars.githubusercontent.com/u/55237525?v=4
   - title: Phrinky's Blog
     description: 阳光开朗的Ricky 的各种日常捏
     website: https://rkk.moe
     image: https://blog.rkk.moe/images/profile.webp
+  - title: LHL's Blog
+    description: 想把海洋里所有鱼都握在手里，把森林里里所有花都插在心头.
+    website: https://blog.lhl.one
+    image: https://cdn.sa.net/2025/04/18/KXpf8u5SQYNPkA3.jpg
   - title: KK's Blog（暂不可用）
     description: 至少我不再寂寞，你眼神能再闪烁
-    website: https://kkkrza.link/
   - title: 深海小涛's Blog
     description: 又一个技术博客
     website: https://xtaolink.cn/
     image: https://xtaolink.cn/img/avatar.jpg
   - title: 小熊的博客（暂不可用）
     description: 是害羞的小熊的技术博客
-    website: https://bearcurb.blog/
   - title: Lingxh's Blog
     description: 是贴心又可爱的lingxh！
     website: https://blog.lingxh.com/
@@ -44,10 +46,10 @@ links:
     description: 世界上本没有博客，直到有了程序员
     website: https://leziblog.com/
     image: https://leziblog.com/wp-content/uploads/2023/01/1674400634-QQ%E5%9B%BE%E7%89%8720230122231613.jpg
-  - title: 刻晴♡マイワイフ
+  - title: 時雨てる
     description: 是大佬！心有所向，日复一日，必有精进
     website: https://keqing.moe
-    image: https://keqing.moe/res/favicon.png
+    image: https://avatars.githubusercontent.com/u/59642397?v=4
   - title: AcoFork
     description: Protect What You Love!
     website: https://afo.im/
@@ -64,6 +66,7 @@ links:
     description: 东风不与周郎便，铜雀春深锁二乔
     website: https://blog.1wind.cn
     image: https://github.com/WindyDante.png
+
 menu:
     main: 
         weight: 4
