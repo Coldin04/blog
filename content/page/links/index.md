@@ -66,6 +66,10 @@ links:
     description: 东风不与周郎便，铜雀春深锁二乔
     website: https://blog.1wind.cn
     image: https://github.com/WindyDante.png
+  - title: 天码行空的小破站
+    description: To be bright~
+    website: https://cs.gt.tc
+    image: https://weavatar.com/avatar/75f9692805b439a703cabc302b85a47d07a9c67a0879c346aa70342fd5ccc596?s=96&r=g
 
 menu:
     main: 
