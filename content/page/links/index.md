@@ -70,6 +70,10 @@ links:
     description: To be bright~
     website: https://cs.gt.tc
     image: https://weavatar.com/avatar/75f9692805b439a703cabc302b85a47d07a9c67a0879c346aa70342fd5ccc596?s=96&r=g
+  - title: Rownix's Blog
+    description: 慢即是快，快即是慢
+    website: https://www.rownix.dev/zh-cn
+    image: https://xapi.rownix.dev/8bec399a8d697bf4db49df6073b263795760a2a9.jpg
 
 menu:
     main: 
@@ -83,7 +87,7 @@ comments: false
 给 me@cold04.com (请注明来意，可能会被忽略) 发邮件或 [联系TG](https://t.me/on0i7) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
 ```
 站点名称: 酷丁的主页
-简介：一个羞涩的小朋友的自我介绍页面
+简介：电脑小白，请多包涵~
 链接：https://cold04.com
 图片：https://cold04.com/avatar.png
 ```
