@@ -74,6 +74,10 @@ links:
     description: 慢即是快，快即是慢
     website: https://www.rownix.dev/zh-cn
     image: https://xapi.rownix.dev/8bec399a8d697bf4db49df6073b263795760a2a9.jpg
+  - title: Yourlai Blog
+    description: 无bug是理想，调设备是日常
+    website: https://yourlai.icu/
+    image: https://cdn.cdn.yourlai.icu/img/logo/ava.png
 
 menu:
     main: 
