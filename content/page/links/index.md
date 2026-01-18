@@ -91,7 +91,7 @@ comments: false
 给 me@cold04.com (请注明来意，可能会被忽略) 发邮件或 [联系TG](https://t.me/on0i7) ,申请加入我的友链，以下是我的个人介绍,建议按如下格式提供信息：
 ```
 站点名称: 酷丁的主页
-简介：电脑小白，请多包涵~
+简介：计算机小萌新，请多包涵~
 链接：https://cold04.com
-图片：https://cold04.com/avatar.png
+图片：https://cold04.com/avatar.webp
 ```
