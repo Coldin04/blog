@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proxy on Coldin04's Blog</title><link>https://blog.cold04.com/tags/proxy/</link><description>Recent content in Proxy on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 30 Oct 2023 22:00:00 +0800</lastBuildDate><atom:link href="https://blog.cold04.com/tags/proxy/index.xml" rel="self" type="application/rss+xml"/><item><title>配置ProxyChains，使得终端可以使用代理</title><link>https://blog.cold04.com/p/proxychains/</link><pubDate>Mon, 30 Oct 2023 22:00:00 +0800</pubDate><guid>https://blog.cold04.com/p/proxychains/</guid><description>&lt;p&gt;兄弟这两天忽然找我，他们实验室服务器因为配置原因，无法直接访问外网，但是他们需要下载一些东西，于是就想到了使用代理。因为一台机器中存在多个用户，自然不能在系统中直接配置代理，经过一翻查找，就想到了使用proxychains。&lt;/p&gt;
+&lt;h1 id="基本环境"&gt;基本环境
+&lt;/h1&gt;&lt;p&gt;简介也说明了，因为实验室的服务器提供给多人使用，部分用户是没有管理员权限的（避免因此造成不必要的麻烦），所以不能在系统中直接配置代理，这样一方面是对路由资源会造成损耗，另一方面，也不太方便在代理和直连之间切换。所以，使用proxychains是一个不错的选择。&lt;/p&gt;
+&lt;h1 id="安装proxychains"&gt;安装proxychains
+&lt;/h1&gt;&lt;p&gt;因为实验室服务器使用的是Debian，所以使用apt安装即可。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install proxychains
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id="配置proxychains"&gt;配置proxychains
+&lt;/h1&gt;&lt;p&gt;一般来说，proxychains的配置文件在/etc/proxychains.conf，但是我们强调，因为上述特殊环境，我们需要在不同用户下使用不同的配置，所以我们需要在用户目录下创建配置文件，这样就可以实现不同用户使用不同的配置。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim ~/.proxychains/proxychains.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在这个配置文件中，我们需添加以下内容:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[ProxyList]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;socks5 127.0.0.1 1080 username password
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中，username和password是你的代理服务器的用户名和密码，如果没有，可以不填写。服务器地址和端口可按照需求修改。&lt;/p&gt;
+&lt;h1 id="使用proxychains"&gt;使用proxychains
+&lt;/h1&gt;&lt;p&gt;使用proxychains很简单，只需要在命令前加上proxychains即可，例如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;proxychains git clone https://github.com/Coldin04/NoteShare.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;或者，也有另外一种方式：&lt;code&gt;proxychains bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这样，就可以在一个新的bash中使用代理了。&lt;/p&gt;
+&lt;h1 id="测试连通性"&gt;测试连通性：
+&lt;/h1&gt;&lt;p&gt;注意：如果使用的是socks5代理，因为socks5代理处于第五层，所以ping命令是无法使用的，只能使用curl或者wget等命令。
+&lt;code&gt;proxychains curl cip.cc&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id="参考资料"&gt;参考资料
+&lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/haad/proxychains" target="_blank" rel="noopener"
+&gt;[1] proxychains-ng&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;
+&lt;a class="link" href="https://github.com/haad/proxychains" target="_blank" rel="noopener"
+&gt;[2] Linux 配置 ProxyChains 本地代理&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

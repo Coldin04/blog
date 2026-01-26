@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据安全 on Coldin04's Blog</title><link>https://blog.cold04.com/categories/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/</link><description>Recent content in 数据安全 on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 29 Jan 2024 09:00:00 +0800</lastBuildDate><atom:link href="https://blog.cold04.com/categories/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>记一次数据恢复和数据冷备份</title><link>https://blog.cold04.com/p/data_cold_backup/</link><pubDate>Mon, 29 Jan 2024 09:00:00 +0800</pubDate><guid>https://blog.cold04.com/p/data_cold_backup/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;最初，家里的一些老照片和老的资料是放在老电脑的硬盘中。不巧的是，老电脑的硬盘可能是被误格式化，导致资料丢失。刚放假的时候，出于想尝试的目的，以及想要找回一些资料的目的，我尝试了一下数据恢复，自此开始，我开始构建自己的资料冷备份体系。&lt;/p&gt;
+&lt;p&gt;首先说明，我对资料的备份和恢复懂的并不多，这里记录的方法可能是错的或者并不是最适合你的方法，只是希望记录下来，以便以后查阅。欢迎各位大佬指正。&lt;/p&gt;
+&lt;h2 id="数据恢复"&gt;数据恢复
+&lt;/h2&gt;&lt;p&gt;因为数据之前有部分被覆写，加上硬盘也被重新格式化了，因此，我选择使用&lt;code&gt;DiskGenius&lt;/code&gt;恢复数据，最终，我成功找到了不少资料和一些照片。但因为数据部分被覆盖，很多照片都丢失了。由此可见，数据无价并不是闹着玩的。&lt;/p&gt;
+&lt;p&gt;当时我操作的方法也很土，使用&lt;code&gt;Ventoy&lt;/code&gt;启动了我移动硬盘中的&lt;code&gt;Win to go&lt;/code&gt;系统，然后在&lt;code&gt;Win to go&lt;/code&gt;系统中安装了&lt;code&gt;DiskGenius&lt;/code&gt;，最后使用&lt;code&gt;DiskGenius&lt;/code&gt;恢复数据。这种方法的好处是不用拆机，但因为在老电脑上运行，速度显然受到了老电脑机能的限制。不过经过一个下午的时间，经过筛选后，也找到了不少资料。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cold04.com/p/data_cold_backup/diskgenius.jpg"
+width="1920"
+height="1080"
+loading="lazy"
+alt="正在使用DiskGenius恢复数据的老电脑"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;
+&lt;/p&gt;
+&lt;p&gt;从DiskGenius中恢复的资料，我将其放在了移动硬盘中，但这些资料没有文件名，需要手动整理。为了不让自己太累，我直接让Copilot辅助我写了一个小程序，来用于将word文档中的标题作为文件名。这样，我就可以直接通过文件名来找到我想要的资料了。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cold04.com/p/data_cold_backup/script_code.png"
+width="3840"
+height="2088"
+loading="lazy"
+alt="借助Copilot编写脚本"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="441px"
+&gt;
+&lt;/p&gt;
+&lt;p&gt;同样，表格文件也借助了差不错的方法解决。自此，资料初步整理完成。&lt;/p&gt;
+&lt;h2 id="冷备份老资料"&gt;冷备份老资料
+&lt;/h2&gt;&lt;p&gt;显然，放在我的移动硬盘中以及电脑中也不是长久之际，我有定期清理空间的习惯。另外，移动硬盘存在丢失的风险。在网上浏览一圈之后，看到了“冷备份”这个词。由此，我开始挑选备份介质。&lt;/p&gt;
+&lt;h3 id="挑选介质"&gt;挑选介质
+&lt;/h3&gt;&lt;p&gt;首先必须明确一点，目前因为预算方面问题，我的预算并不太够。幸运的是，目前来说，我需要冷备份的资料并不是很多，也并不需要太大的储存空间。不过考虑到介质可能很久才打开检查一次，我根据需要选择机械硬盘。&lt;/p&gt;
+&lt;p&gt;可能去看大部分博主的推荐，都会告诉你，目前4TB以下的机械硬盘都不那么推荐。不过考虑到预算和上述的实际需求，经过多方面学习，最终选择了2块全新的西数的1TB紫盘来完成我的任务。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.cold04.com/p/data_cold_backup/wd_disk.jpg"
+width="1280"
+height="1707"
+loading="lazy"
+alt="我所挑选的硬盘"
+class="gallery-image"
+data-flex-grow="74"
+data-flex-basis="179px"
+&gt;
+&lt;/p&gt;
+&lt;p&gt;读取硬盘，目前我选用的是绿联的硬盘盒。建议替换自带的电源，但我目前预算不足，没有替换。&lt;/p&gt;
+&lt;h3 id="拷贝资料"&gt;拷贝资料
+&lt;/h3&gt;&lt;p&gt;我没有组Raid的条件，故我选择手动“镜像”两个盘的文件。我先拆封了一个盘，在电脑上整理好所有资料，使用fastcopy将资料复制到硬盘目录。使用fastcopy纯粹是因为他可以在拷贝资料的时候校验，拷贝大文件的时候也相对较快，体验较好。&lt;/p&gt;
+&lt;p&gt;在弹出硬盘时，注意先在电脑上选择弹出，等待数秒保证硬盘停转和磁头归位后，关闭硬盘盒电源并拔出硬盘。这样做，一方面可以防止硬盘还在读写，另一方面，磁头离开硬盘盘面后，可以防止移动时磁头划伤硬盘，变成“唱片机”。&lt;/p&gt;
+&lt;h3 id="定期查看和写入资料"&gt;定期查看和写入资料
+&lt;/h3&gt;&lt;p&gt;一般来说，每个阶段之后，都需要将一些资料进行备份。我建议周期是半年到一年定期检查下。当然，有重要资料的时候，也别忘记写入，时间有限的话，也可以一同检查下硬盘的smart值。&lt;/p&gt;
+&lt;p&gt;对于用于备份的机械硬盘来说，smart值还挺重要的，有时候smart出现警告后，要及时考虑转移资料和选择新硬盘进行备份。&lt;/p&gt;
+&lt;h2 id="总结"&gt;总结
+&lt;/h2&gt;&lt;p&gt;对于每个人来说，都有或多或少的重要资料。永远要记住：“数据无价”。定期做好数据备份是一项不错的选择，不要等到失去了再追悔莫及。&lt;/p&gt;
+&lt;p&gt;这里有个小插曲，我在3月份的时候，无意中格式化了Windows系统盘。因为备份习惯，导致我的资料和进度丢失并不算太多，所以还是那句话，数据无价，勤备份才是王。&lt;/p&gt;</description></item></channel></rss>
