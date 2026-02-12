@@ -78,6 +78,10 @@ links:
     description: 无bug是理想，调设备是日常
     website: https://yourlai.icu/
     image: https://cdn.cdn.yourlai.icu/img/logo/ava.png
+  - title: Clover Yan 的小屋
+    description: 生命是灰色的，理论之树常青。
+    website: https://www.khyan.top/
+    image: https://www.khyan.top/favicon.png
 
 menu:
     main: 
