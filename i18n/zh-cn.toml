@@ -1,0 +1,4 @@
+[article]
+    [article.codeblock]
+        copy = "复制"
+        copied = "已复制"

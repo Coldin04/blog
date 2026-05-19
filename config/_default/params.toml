@@ -15,11 +15,7 @@ lastUpdated = "Jan 02, 2006 15:04 MST"
 [sidebar]
 emoji = "👋"
 subtitle = "永远相信美好的事情即将发生！"
-
-[sidebar.avatar]
-enabled = true
-local = true
-src = "img/avatar.webp"
+avatar = "img/avatar.webp"
 
 [article]
 math = true
@@ -147,6 +143,3 @@ clientSecret = ""
 [comments.cusdis]
 host = ""
 id = ""
-
-[render.image.extranelLink]
-enabled = true

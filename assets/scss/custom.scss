@@ -1,3 +1,60 @@
 /*
     You can add your own custom styles here.
 */
+
+[data-scheme="light"] {
+    --pre-background-color: #d8dbe2;
+    --code-background-color: #d8dbe2;
+    --code-copy-background: #eef0f4;
+    --code-copy-border: rgba(89, 99, 121, 0.22);
+    --code-copy-color: #4f586b;
+    --code-copy-background-hover: #f7f8fa;
+}
+
+[data-scheme="dark"] {
+    --pre-background-color: #1a1b26;
+    --code-background-color: #1a1b26;
+    --code-copy-background: #24283b;
+    --code-copy-border: rgba(169, 177, 214, 0.22);
+    --code-copy-color: #c0caf5;
+    --code-copy-background-hover: #2f354f;
+}
+
+.article-content {
+    pre,
+    .highlight,
+    .highlight pre,
+    .highlight code,
+    .highlight .chroma,
+    .highlight .lntable,
+    .highlight .lntable tbody,
+    .highlight .lntable tr,
+    .highlight .lntable td {
+        background: var(--pre-background-color) !important;
+    }
+
+    .copyCodeButton {
+        min-width: 54px;
+        height: 30px;
+        padding: 0 12px;
+        border: 1px solid var(--code-copy-border);
+        border-radius: 6px;
+        background: var(--code-copy-background);
+        box-shadow: none;
+        color: var(--code-copy-color);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 28px;
+        text-align: center;
+        opacity: 0;
+        z-index: 2;
+
+        &:hover {
+            background: var(--code-copy-background-hover);
+        }
+
+        &:empty::before {
+            content: "复制";
+        }
+    }
+}
