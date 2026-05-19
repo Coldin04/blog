@@ -3,12 +3,14 @@
 */
 
 [data-scheme="light"] {
-    --pre-background-color: #d8dbe2;
-    --code-background-color: #d8dbe2;
-    --code-copy-background: #eef0f4;
-    --code-copy-border: rgba(89, 99, 121, 0.22);
-    --code-copy-color: #4f586b;
-    --code-copy-background-hover: #f7f8fa;
+    --pre-text-color: #f8f8f2;
+    --pre-background-color: #1a1b26;
+    --code-background-color: #ebebec;
+    --code-copy-background: #1a1b26;
+    --code-text-color: #1a1b26;
+    --code-copy-border: rgba(169, 177, 214, 0.22);
+    --code-copy-color: #c0caf5;
+    --code-copy-background-hover: #2f354f;
 }
 
 [data-scheme="dark"] {
@@ -17,6 +19,7 @@
     --code-copy-background: #24283b;
     --code-copy-border: rgba(169, 177, 214, 0.22);
     --code-copy-color: #c0caf5;
+    --code-text-color: #f8f8f2;
     --code-copy-background-hover: #2f354f;
 }
 
@@ -56,5 +59,102 @@
         &:empty::before {
             content: "复制";
         }
+    }
+}
+
+[data-scheme="light"] .article-content .chroma {
+    color: #f8f8f2;
+
+    .err {
+        color: #bb0064;
+    }
+
+    .k,
+    .kc,
+    .kd,
+    .kp,
+    .kr,
+    .kt,
+    .no {
+        color: #66d9ef;
+    }
+
+    .kn,
+    .nt,
+    .o,
+    .ow,
+    .gd {
+        color: #f92672;
+    }
+
+    .n,
+    .nb,
+    .bp,
+    .ni,
+    .fm,
+    .nl,
+    .nn,
+    .py,
+    .nv,
+    .vc,
+    .vg,
+    .vi,
+    .vm,
+    .p {
+        color: #f8f8f2;
+    }
+
+    .na,
+    .nc,
+    .nd,
+    .ne,
+    .nf,
+    .nx,
+    .gi {
+        color: #a6e22e;
+    }
+
+    .l,
+    .se,
+    .m,
+    .mb,
+    .mf,
+    .mh,
+    .mi,
+    .il,
+    .mo {
+        color: #ae81ff;
+    }
+
+    .ld,
+    .s,
+    .sa,
+    .sb,
+    .sc,
+    .dl,
+    .sd,
+    .s2,
+    .sh,
+    .si,
+    .sx,
+    .sr,
+    .s1,
+    .ss {
+        color: #e6db74;
+    }
+
+    .c,
+    .ch,
+    .cm,
+    .c1,
+    .cs,
+    .cp,
+    .cpf,
+    .gu {
+        color: #75715e;
+    }
+
+    .hl {
+        background-color: #3f3f30;
     }
 }
