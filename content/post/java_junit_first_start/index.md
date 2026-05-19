@@ -266,7 +266,7 @@ public class StringUtils {
 
 这样设计的好处是测试比较清晰：正常功能、特殊输入、错误输入都覆盖到了，后面如果代码改坏了，也能通过测试快速发现问题。
 
-```
+```java
 package com.cold04.stringutils;
 
 import org.junit.jupiter.api.AfterEach;
