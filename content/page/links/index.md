@@ -82,6 +82,11 @@ links:
     description: 生命是灰色的，理论之树常青。
     website: https://www.khyan.top/
     image: https://www.khyan.top/favicon.png
+  - title: chihuo2104の部落格
+    description: chihuo2104の部落格
+    website: https://blog.chihuo2104.dev/
+    image: https://www.gravatar.com/avatar/23c15369dca77fe489d37321fe54ec34?s=200&d=mp
+    
 
 menu:
     main: 
