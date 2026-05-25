@@ -69,162 +69,11 @@ flowchart TD
     I --> J[清除 doubao_voice_active]
 ```
 
-如果你想根据自己的习惯调整规则（例如更换触发键、修改输入法 ID 或调整等待延迟），可以将下面的 JSON 规则喂给 AI（如 ChatGPT 或 Claude），让它参考这个逻辑为你生成定制化的配置。受限于文章篇幅，你也可以将文章链接交由 AI ，辅助教学您如何在 Karabiner 配置相关规则。
+完整规则已经发布到 Karabiner-Elements 的 Complex Modifications 规则市场：[Double tap Right Command switch DoubaoIME](https://ke-complex-modifications.pqrs.org/?q=doubao#double_tap_right_command_switch_doubaoime)。打开链接后点击 `Import`，按 Karabiner 的提示导入并启用即可。
+
+如果你想根据自己的习惯调整规则（例如更换触发键、修改输入法 ID 或调整等待延迟），可以在 Karabiner 导入后修改对应参数，也可以将这篇文章链接交给 AI（如 ChatGPT 或 Claude），让它参考这个逻辑为你生成定制化配置。
 
 这套规则的核心价值在于实现了一个**全局快速唤醒的工作流**：无论你在哪个 App 下，只需双击右 Command 即可瞬间切到豆包并开启语音输入，说完再次双击即可自动切回主力输入法（如 Rime），将“切换→语音→切回”的繁琐操作压缩成了一个连贯的交互。
-
-下面是完整的 Karabiner 规则：
-
-```json
-{
-  "description": "Double tap Right Command: switch to Doubao and send right Option twice; double tap again switches back to Rime",
-  "manipulators": [
-    {
-      "conditions": [
-        {
-          "name": "right_command_tapped_once",
-          "type": "variable_if",
-          "value": 1
-        },
-        {
-          "name": "doubao_voice_active",
-          "type": "variable_unless",
-          "value": 1
-        }
-      ],
-      "from": {
-        "key_code": "right_command",
-        "modifiers": { "optional": ["any"] }
-      },
-      "to": [
-        {
-          "select_input_source": {
-            "input_source_id": "^com\\.bytedance\\.inputmethod\\.doubaoime\\.pinyin$"
-          }
-        },
-        {
-          "hold_down_milliseconds": 300,
-          "key_code": "vk_none"
-        },
-        {
-          "hold_down_milliseconds": 60,
-          "key_code": "right_option"
-        },
-        {
-          "hold_down_milliseconds": 60,
-          "key_code": "right_option"
-        },
-        {
-          "set_variable": {
-            "name": "doubao_voice_active",
-            "value": 1
-          }
-        },
-        {
-          "set_variable": {
-            "name": "right_command_tapped_once",
-            "value": 0
-          }
-        }
-      ],
-      "type": "basic"
-    },
-    {
-      "conditions": [
-        {
-          "name": "right_command_tapped_once",
-          "type": "variable_if",
-          "value": 1
-        },
-        {
-          "name": "doubao_voice_active",
-          "type": "variable_if",
-          "value": 1
-        }
-      ],
-      "from": {
-        "key_code": "right_command",
-        "modifiers": { "optional": ["any"] }
-      },
-      "to": [
-        {
-          "hold_down_milliseconds": 60,
-          "key_code": "right_option"
-        },
-        {
-          "hold_down_milliseconds": 60,
-          "key_code": "right_option"
-        },
-        {
-          "hold_down_milliseconds": 5000,
-          "key_code": "vk_none"
-        },
-        {
-          "select_input_source": {
-            "input_source_id": "^im\\.rime\\.inputmethod\\.Squirrel\\.Hans$"
-          }
-        },
-        {
-          "set_variable": {
-            "name": "doubao_voice_active",
-            "value": 0
-          }
-        },
-        {
-          "set_variable": {
-            "name": "right_command_tapped_once",
-            "value": 0
-          }
-        }
-      ],
-      "type": "basic"
-    },
-    {
-      "from": {
-        "key_code": "right_command",
-        "modifiers": { "optional": ["any"] }
-      },
-      "parameters": {
-        "basic.to_delayed_action_delay_milliseconds": 450,
-        "basic.to_if_alone_timeout_milliseconds": 250
-      },
-      "to": [
-        {
-          "key_code": "right_command",
-          "lazy": true
-        }
-      ],
-      "to_delayed_action": {
-        "to_if_canceled": [
-          {
-            "set_variable": {
-              "name": "right_command_tapped_once",
-              "value": 0
-            }
-          }
-        ],
-        "to_if_invoked": [
-          {
-            "set_variable": {
-              "name": "right_command_tapped_once",
-              "value": 0
-            }
-          }
-        ]
-      },
-      "to_if_alone": [
-        {
-          "set_variable": {
-            "name": "right_command_tapped_once",
-            "value": 1
-          }
-        }
-      ],
-      "type": "basic"
-    }
-  ]
-}
-```
 
 ## 两个等待，各有用意
 
@@ -240,6 +89,6 @@ flowchart TD
 
 Shell 脚本也是类似的情况。一开始打算用 `macism` 做输入法切换，`osascript` 发按键，但因为右 Option 的模拟问题，这条路一开始就走不通。目前这版完全不依赖外部脚本，切换直接用 Karabiner 内置的 `select_input_source`。如果后面发现 `select_input_source` 在某些 macOS 版本上不稳定，也随时可以退回去调用 `shell_command` 执行 `macism`——但右 Option 双击一定得留在 Karabiner 这边。
 
-这个方案用了一下午，跑了十几轮语音输入，目前没出过岔子。如果你也面临类似的需求——主力输入法不想换，但偶尔想用豆包语音——可以参考这个思路。规则里的 input_source_id 改成你自己的输入法就行，等待时间按习惯微调，其他的应该都能直接用。
+这个方案用了一下午，跑了十几轮语音输入，目前没出过岔子。如果你也面临类似的需求——主力输入法不想换，但偶尔想用豆包语音——可以参考这个思路。导入后的规则里把 input_source_id 改成你自己的输入法就行，等待时间按习惯微调，其他的应该都能直接用。
 
-* 本文脚本内容由作者亲自实验，文章整理交由AI辅助完成 *
+* 本文方案由作者亲自实验，文章整理交由AI辅助完成 *
