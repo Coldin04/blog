@@ -1,0 +1,446 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="初尝Java和JUnit，借助实验快速了解Java实践的记录。"><title>由JUnit单元测试实验开始，浅学 SpringBoot初始化和测试</title><link rel=canonical href=https://blog.cold04.com/p/java-junit-first-start/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.c34392c73999aa9649f6c973733270707c830c6c4007e14bc0c576f42bb2072b.css><meta property='og:title' content="由JUnit单元测试实验开始，浅学 SpringBoot初始化和测试"><meta property='og:description' content="初尝Java和JUnit，借助实验快速了解Java实践的记录。"><meta property='og:url' content='https://blog.cold04.com/p/java-junit-first-start/'><meta property='og:site_name' content="Coldin04's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Java'><meta property='article:tag' content='JUnit'><meta property='article:tag' content='SpringBoot'><meta property='article:tag' content='单元测试'><meta property='article:published_time' content='2026-05-19T22:48:20+08:00'><meta property='article:modified_time' content='2026-05-19T22:48:20+08:00'><meta name=twitter:title content="由JUnit单元测试实验开始，浅学 SpringBoot初始化和测试"><meta name=twitter:description content="初尝Java和JUnit，借助实验快速了解Java实践的记录。"><link rel="shortcut icon" href=favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.webp width=480 height=480 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>👋</span></figure><div class=site-meta><h1 class=site-name><a href=/>Coldin04's Blog</a></h1><h2 class=site-description>永远相信美好的事情即将发生！</h2></div></header><ol class=menu-social><li><a href=https://github.com/Coldin04 title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://cold04.com title=Home rel=me><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg></a></li><li><a href=https://note.cold04.com title=Note rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-notebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4h11a2 2 0 012 2v12a2 2 0 01-2 2H6a1 1 0 01-1-1V5a1 1 0 011-1m3 0v18"/><path d="M13 8h2"/><path d="M13 12h2"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友链</span></a></li><li><a href=https://note.cold04.com target=_blank><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-notebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4h11a2 2 0 012 2v12a2 2 0 01-2 2H6a1 1 0 01-1-1V5a1 1 0 011-1m3 0v18"/><path d="M13 8h2"/><path d="M13 12h2"/></svg>
+<span>笔记仓库</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#基础介绍>基础介绍</a><ol><li><a href=#什么是单元测试>什么是单元测试</a></li><li><a href=#为什么需要junit>为什么需要JUnit</a></li></ol></li><li><a href=#环境配置>环境配置</a></li><li><a href=#计数器练习>计数器练习</a></li><li><a href=#测试和实验>测试和实验</a><ol><li><a href=#基础测试>基础测试</a></li><li><a href=#修改断言测试异常提示>修改断言，测试异常提示</a></li><li><a href=#测试除以零的情况>测试除以零的情况</a></li></ol></li><li><a href=#字符串判断测试>字符串判断测试</a><ol><li><a href=#代码准备>代码准备</a></li><li><a href=#测试设计>测试设计</a></li><li><a href=#运行测试>运行测试</a></li></ol></li><li><a href=#总结>总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/java/ style=background-color:#c7efbe;color:#183d0f>Java
+</a><a href=/categories/%E6%B5%8B%E8%AF%95/ style=background-color:#bee6ef;color:#0f353d>测试</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/java-junit-first-start/>由JUnit单元测试实验开始，浅学 SpringBoot初始化和测试</a></h2><h3 class=article-subtitle>初尝Java和JUnit，借助实验快速了解Java实践的记录。</h3></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-19T22:48:20+08:00>May 19, 2026</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#基础介绍>基础介绍</a><ol><li><a href=#什么是单元测试>什么是单元测试</a></li><li><a href=#为什么需要junit>为什么需要JUnit</a></li></ol></li><li><a href=#环境配置>环境配置</a></li><li><a href=#计数器练习>计数器练习</a></li><li><a href=#测试和实验>测试和实验</a><ol><li><a href=#基础测试>基础测试</a></li><li><a href=#修改断言测试异常提示>修改断言，测试异常提示</a></li><li><a href=#测试除以零的情况>测试除以零的情况</a></li></ol></li><li><a href=#字符串判断测试>字符串判断测试</a><ol><li><a href=#代码准备>代码准备</a></li><li><a href=#测试设计>测试设计</a></li><li><a href=#运行测试>运行测试</a></li></ol></li><li><a href=#总结>总结</a></li></ol></nav></details></aside><section class=article-content><p>前两周软件测试课上，老师借由JUnit，来介绍单元测试并予以实践。之前没怎么写过Java，也正好以此机会了解一下Java的基本语法。</p><p>在开始学习和实验前，我已经在电脑的本地环境中配置好JDK和基础的代码支持环境，这里就不过多赘述。</p><h2 id=基础介绍>基础介绍</h2><h3 id=什么是单元测试>什么是单元测试</h3><p>单元测试是对软件中最的可测试单元（通常是一个法或类）进检查和验证的过程。在软件开发过程中，每实现个功能模块，就需要验证其是否正常作、是否达到预期效果。只有确保每个模块都正常工作，才能保证整个软件系统的平稳运行。</p><h3 id=为什么需要junit>为什么需要JUnit</h3><p>在没有JUnit之前，开发者通常通过编写main方法来测试代码。例如，测试一个计算器类的加法方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>TestCalculator</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=o>[]</span><span class=w> </span><span class=n>args</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>Calculator</span><span class=w> </span><span class=n>calculator</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>Calculator</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>calculator</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>));</span><span class=w> </span><span class=c1>// 需要人工判断结果是否正确</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>这种传统式存在明显弊端：需要动对比测试数据，法动化判断；当测试量很时，难以同时管理多个测试；测试代码与业务代码混在起，不利于维护。</p><p>JUnit是Java领域最流的单元测试框架，它能帮助开发者简化测试流程，在编写代码的同时进单元测试，快速追踪问题原因，降低回归错误的难度。</p><p>借由测试框架，对于初学者来说，也能更好的规范相关测试行为， 例如实验指导书中重点提到 <code>@BeforeEach</code> <code>@BeforeAll</code> <code>@AfterEach</code> <code>@AfterAll</code> ，在某些需要临时数据环境中，也可以方便的在单元测试或者整体的文件测试开始时添加，测试后及时清理。保证相关数据相对隔离，不会因为某些情况下忘记清理异常数据或者添加数据而导致的测试额外问题，也减轻了测试者在每次测试前后的负担。</p><h2 id=环境配置>环境配置</h2><p>原实验档案建议使用IDEA创建Spring项目，方便快速配置环境、配置依赖。不过我个人认为，为了这一个简单的单元测试引入整个重型IDE，不太是我的风格，我便使用了更简单的方法完成环境的初始化。</p><p>实际上<code>SpringBoot</code> 也可以通过官方的 <a class=link href=https://start.spring.io/ target=_blank rel=noopener>https://start.spring.io/</a> 快速初始化，界面如下，通过相关页面，可以快速生成需要的项目脚手架，大大节省时间。</p><p><img alt=图片.png class=gallery-image data-flex-basis=398px data-flex-grow=166 height=1706 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=https://files.seeusercontent.com/2026/05/19/x7Qn/a10f44f.png width=2836></p><p>当然，也可以使用命令行工具快速创建项目，我创建的试验项目，列表如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl https://start.aliyun.com/starter.tgz <span class=se>\
+</span></span></span><span class=line><span class=cl>  -d <span class=nv>groupId</span><span class=o>=</span>com.cold04 <span class=se>\
+</span></span></span><span class=line><span class=cl>  -d <span class=nv>artifactId</span><span class=o>=</span>junit-lab <span class=se>\
+</span></span></span><span class=line><span class=cl>  -d <span class=nv>dependencies</span><span class=o>=</span>web <span class=se>\
+</span></span></span><span class=line><span class=cl>  -d <span class=nv>baseDir</span><span class=o>=</span>junit-lab <span class=p>|</span> tar -xzvf -
+</span></span></code></pre></td></tr></table></div></div><p>创建完成后，可以看到相关文件既创建成功。接下来是完成Lab相关的习题。</p><h2 id=计数器练习>计数器练习</h2><p>使用命令快速创建相关函数文件，要求的是实现一个简易计算器项目，并分别对相关函数进行测试。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p src/main/java/com/cold04/junitlab/calculator
+</span></span><span class=line><span class=cl>mkdir -p src/test/java/com/cold04/junitlab/calculator
+</span></span></code></pre></td></tr></table></div></div><p>首先创建<code>Calculator.java</code>文件，相关代码如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nn>com.cold04.calculator</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>Calculator</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c1>// 加法</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=nf>add</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>a</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=n>b</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>b</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c1>// 减法</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=nf>subtract</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>a</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=n>b</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=n>b</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c1>//乘法</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=nf>multiply</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>a</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=n>b</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=n>b</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c1>//除法</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>double</span><span class=w> </span><span class=nf>divide</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>a</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=n>b</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>if</span><span class=p>(</span><span class=n>b</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>0</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>throw</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>IllegalArgumentException</span><span class=p>(</span><span class=s>&#34;除数不能为零&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=p>(</span><span class=kt>double</span><span class=p>)</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=o>/</span><span class=w> </span><span class=n>b</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>接下来创建测试类文件，位于 <code>src/test/java/com/cold04/calculator/CalculatorTest.java</code> ，代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nn>com.cold04.calculator</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>org.junit.jupiter.api.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import static</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Assertions.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>CalculatorTest</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>Calculator</span><span class=w> </span><span class=n>calculator</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@BeforeEach</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setUP</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>calculator</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>Calculator</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;初始化 Calculator 对象中&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@AfterEach</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>tearDown</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;测试方法执行完毕&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@BeforeAll</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>initAll</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;所有测试方法执行前的初始化&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@AfterAll</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kd>static</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>tearDownAll</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;所有测试方法执行后的清理&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testAdd</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;正在测试 add 方法&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;5 + 5 应该等于 10&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=o>-</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;-5 + 5 应该等于 0&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;正在测试 add 方法的负数情况&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=o>-</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=o>-</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=o>-</span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;-5 + -5 应该等于 -10&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=o>-</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>add</span><span class=p>(</span><span class=o>-</span><span class=n>2</span><span class=p>,</span><span class=w> </span><span class=o>-</span><span class=n>3</span><span class=p>),</span><span class=w> </span><span class=s>&#34;-2 + -3 应该等于 -5&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testSubtract</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>subtract</span><span class=p>(</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;10 - 5 应该等于 5&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>subtract</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;5 - 5 应该等于 0&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testMultiply</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>25</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>multiply</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;5 * 5 应该等于 25&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=o>-</span><span class=n>15</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>multiply</span><span class=p>(</span><span class=o>-</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>3</span><span class=p>),</span><span class=w> </span><span class=s>&#34;-5 * 3 应该等于 -15&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testDivide</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>2</span><span class=p>.</span><span class=na>0</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>divide</span><span class=p>(</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>5</span><span class=p>),</span><span class=w> </span><span class=s>&#34;10 / 5 应该等于 2.0&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=n>2</span><span class=p>.</span><span class=na>5</span><span class=p>,</span><span class=w> </span><span class=n>calculator</span><span class=p>.</span><span class=na>divide</span><span class=p>(</span><span class=n>5</span><span class=p>,</span><span class=w> </span><span class=n>2</span><span class=p>),</span><span class=w> </span><span class=s>&#34;5 / 2 应该等于 2.5&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testDivideByZero</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 测试除以零的情况，应该抛出 IllegalArgumentException</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertThrows</span><span class=p>(</span><span class=n>IllegalArgumentException</span><span class=p>.</span><span class=na>class</span><span class=p>,</span><span class=w> </span><span class=p>()</span><span class=w> </span><span class=o>-&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>calculator</span><span class=p>.</span><span class=na>divide</span><span class=p>(</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w> </span><span class=s>&#34;除以零应该抛出 IllegalArgumentException&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>此时，相关主要文件已经创建完毕，且可以开始运行并测试，使用 <code>./mvnw -Dtest=CalculatorTest test</code> 指令既可开始测试。</p><h2 id=测试和实验>测试和实验</h2><h3 id=基础测试>基础测试</h3><p>如下图所示，输入 <code>./mvnw -Dtest=CalculatorTest test</code> 后，相关提示如下，显然测试通过。</p><p><img alt=图片.png class=gallery-image data-flex-basis=417px data-flex-grow=173 height=1288 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=https://files.seeusercontent.com/2026/05/19/9ehI/8a62284.png width=2238></p><h3 id=修改断言测试异常提示>修改断言，测试异常提示</h3><p>如下图所示，这边假<code>testMultiply</code> 中 <code>-5 * 3</code> 因为测试者的忽视，意外写错<code>-15</code>，再次运行测试。如下图，可显然看到，测试在运行时指出了相关错误，但对于后续测试，是不影响的。对于测试前后的初始化调用，也不会因为某个单元测试不通过而停止。个人对此的理解是，测试前的环境准备和测试后的清理工作必不可少，例如在一些数据库环境中，在测试前写入相关mock数据，在测试后及时清理，避免数据异常影响下一阶段的测试或开发。这样的方式，显著的减少了开发时开发者的负担。</p><p><img alt=图片.png class=gallery-image data-flex-basis=422px data-flex-grow=176 height=1422 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=https://files.seeusercontent.com/2026/05/19/arB0/9ac938a.png width=2504></p><h3 id=测试除以零的情况>测试除以零的情况</h3><p>在此情况下，我们的计算器会抛出 <code>IllegalArgumentException</code> 错误，显然我们需要在测试中捕获这个错误。当test文件成功捕获相关异常的时候，代表相关异常处理行为正常，测试通过（此处可能略微有点反逻辑，可以理解为这个地方是能不能判断出错误的位置，判断出就予以通过）。</p><p>相关代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testDivideByZero</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 测试除以零的情况，应该抛出 IllegalArgumentException</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>IllegalArgumentException</span><span class=w> </span><span class=n>exception</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>assertThrows</span><span class=p>(</span><span class=n>IllegalArgumentException</span><span class=p>.</span><span class=na>class</span><span class=p>,</span><span class=w> </span><span class=p>()</span><span class=w> </span><span class=o>-&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>calculator</span><span class=p>.</span><span class=na>divide</span><span class=p>(</span><span class=n>10</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w> </span><span class=s>&#34;除以零应该抛出 IllegalArgumentException&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;除数不能为零&#34;</span><span class=p>,</span><span class=w> </span><span class=n>exception</span><span class=p>.</span><span class=na>getMessage</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>经过测试，显然测试成功通过。</p><p><img alt=图片.png class=gallery-image data-flex-basis=425px data-flex-grow=177 height=1290 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=https://files.seeusercontent.com/2026/05/19/7Aqu/a899f7c.png width=2286></p><h2 id=字符串判断测试>字符串判断测试</h2><p>完成了上述测试后，既趁热打铁，做一个如下要求的程序，并完善边界测试：</p><blockquote><p>设计一个简单的字符串工具<code>StringUtils</code>，包含以下方法：</p><ol><li>isEmpty(String str) ：判断字符串是否为空（null 或空字符串）</li><li>reverse(String str) ：反转字符串</li><li>concat(String str1, String str2) ：拼接两个字符串
+为该类编写完整的单元测试，要求：</li><li>使用 @BeforeEach 和 @AfterEach 注解</li><li>至少覆盖正常情况、边界情况和异常情况</li><li>使用至少 4 种不同的断言方法</li></ol></blockquote><h3 id=代码准备>代码准备</h3><p>简单来说，这个程序的设计思路是：先写一个简单的工具类 <code>StringUtils</code>，把字符串相关的常用操作封装起来，然后用 JUnit 单元测试验证每个方法在不同输入下是否符合预期。代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nn>com.cold04.stringutils</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>StringUtils</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>boolean</span><span class=w> </span><span class=nf>isEmpty</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>str</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>str</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=kc>null</span><span class=w> </span><span class=o>||</span><span class=w> </span><span class=n>str</span><span class=p>.</span><span class=na>isEmpty</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>reverse</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>str</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=n>str</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=kc>null</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>throw</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>IllegalArgumentException</span><span class=p>(</span><span class=s>&#34;字符串不能为 null&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>StringBuilder</span><span class=p>(</span><span class=n>str</span><span class=p>).</span><span class=na>reverse</span><span class=p>().</span><span class=na>toString</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>concat</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>str1</span><span class=p>,</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>str2</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>String</span><span class=w> </span><span class=n>first</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>str1</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=kc>null</span><span class=w> </span><span class=o>?</span><span class=w> </span><span class=s>&#34;&#34;</span><span class=w> </span><span class=p>:</span><span class=w> </span><span class=n>str1</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>String</span><span class=w> </span><span class=n>second</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>str2</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=kc>null</span><span class=w> </span><span class=o>?</span><span class=w> </span><span class=s>&#34;&#34;</span><span class=w> </span><span class=p>:</span><span class=w> </span><span class=n>str2</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>first</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>second</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=测试设计>测试设计</h3><p>测试文件 <code>StringUtilsTest.java</code> 的设计思路是：按方法分别测试，每个方法只验证自己对应的功能，这样出错时能很快知道是哪一块有问题。</p><p><code>@BeforeEach</code> 用来在每个测试方法执行前重新创建一个 <code>StringUtils</code> 对象。这样每个测试都是独立的，不会互相影响。<code>@AfterEach</code> 用来在每个测试结束后输出提示，方便观察测试执行顺序。</p><p>测试内容分成三类：</p><ol><li>正常情况：比如 <code>"hello"</code> 反转成 <code>"olleh"</code>，两个普通字符串能正常拼接。这样验证基本功能是否正确。</li><li>边界情况：比如 <code>null</code>、空字符串 <code>""</code>、单个字符 <code>"a"</code>。这些输入比较特殊，容易出错，所以要单独测。</li><li>异常情况：比如 <code>reverse(null)</code> 应该抛出 <code>IllegalArgumentException</code>。这样可以确认程序遇到非法输入时不是随便崩溃，而是按设计抛出指定异常。</li></ol><p>这样设计的好处是测试比较清晰：正常功能、特殊输入、错误输入都覆盖到了，后面如果代码改坏了，也能通过测试快速发现问题。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nn>com.cold04.stringutils</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>org.junit.jupiter.api.AfterEach</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>org.junit.jupiter.api.BeforeEach</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Test</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import static</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Assertions.assertEquals</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import static</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Assertions.assertFalse</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import static</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Assertions.assertThrows</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import static</span><span class=w> </span><span class=nn>org.junit.jupiter.api.Assertions.assertTrue</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>StringUtilsTest</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>StringUtils</span><span class=w> </span><span class=n>stringUtils</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@BeforeEach</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>setUp</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>stringUtils</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>StringUtils</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;初始化 StringUtils 对象&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@AfterEach</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>tearDown</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;StringUtils 测试方法执行完毕&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testIsEmpty</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 边界情况：null 和空字符串都属于“空”的特殊输入。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertTrue</span><span class=p>(</span><span class=n>stringUtils</span><span class=p>.</span><span class=na>isEmpty</span><span class=p>(</span><span class=kc>null</span><span class=p>),</span><span class=w> </span><span class=s>&#34;null 应该被判断为空&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertTrue</span><span class=p>(</span><span class=n>stringUtils</span><span class=p>.</span><span class=na>isEmpty</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;空字符串应该被判断为空&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 正常情况：有内容的字符串不应该被判断为空。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertFalse</span><span class=p>(</span><span class=n>stringUtils</span><span class=p>.</span><span class=na>isEmpty</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;非空字符串不应该被判断为空&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testReverse</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 正常情况：普通字符串应该按字符顺序反转。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;olleh&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>reverse</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;hello 反转后应该是 olleh&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 边界情况：单字符和空字符串反转后都应该保持原样。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;a&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>reverse</span><span class=p>(</span><span class=s>&#34;a&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;单个字符反转后应该不变&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>reverse</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;空字符串反转后应该仍为空字符串&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testReverseWithNull</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 异常情况：reverse 不接受 null，应该抛出指定异常。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>IllegalArgumentException</span><span class=w> </span><span class=n>exception</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>assertThrows</span><span class=p>(</span><span class=n>IllegalArgumentException</span><span class=p>.</span><span class=na>class</span><span class=p>,</span><span class=w> </span><span class=p>()</span><span class=w> </span><span class=o>-&gt;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>reverse</span><span class=p>(</span><span class=kc>null</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w> </span><span class=s>&#34;反转 null 应该抛出 IllegalArgumentException&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;字符串不能为 null&#34;</span><span class=p>,</span><span class=w> </span><span class=n>exception</span><span class=p>.</span><span class=na>getMessage</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>testConcat</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 正常情况：两个普通字符串直接拼接。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;hello world&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>concat</span><span class=p>(</span><span class=s>&#34;hello &#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;world&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;两个普通字符串应该正常拼接&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// 边界情况：空字符串或 null 参与拼接时，不应该导致程序出错。</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>concat</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;拼接空字符串应该保持原字符串&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;world&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>concat</span><span class=p>(</span><span class=kc>null</span><span class=p>,</span><span class=w> </span><span class=s>&#34;world&#34;</span><span class=p>),</span><span class=w> </span><span class=s>&#34;第一个参数为 null 时应按空字符串处理&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>concat</span><span class=p>(</span><span class=s>&#34;hello&#34;</span><span class=p>,</span><span class=w> </span><span class=kc>null</span><span class=p>),</span><span class=w> </span><span class=s>&#34;第二个参数为 null 时应按空字符串处理&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>assertEquals</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span><span class=w> </span><span class=n>stringUtils</span><span class=p>.</span><span class=na>concat</span><span class=p>(</span><span class=kc>null</span><span class=p>,</span><span class=w> </span><span class=kc>null</span><span class=p>),</span><span class=w> </span><span class=s>&#34;两个参数都为 null 时应返回空字符串&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=运行测试>运行测试</h3><p>通过如下命令运行测试 <code>StringUtils</code> 模块，下图显示，相关测试很快便通过。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>./mvnw -Dtest<span class=o>=</span>StringUtilsTest <span class=nb>test</span>
+</span></span></code></pre></td></tr></table></div></div><p><img alt=图片.png class=gallery-image data-flex-basis=372px data-flex-grow=155 height=1524 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=https://files.seeusercontent.com/2026/05/19/b5Rs/fa6797b.png width=2364></p><h2 id=总结>总结</h2><p>单元测试是现代软件开发中不可或缺的环节，它能在开发过程中早期发现问题、提高代码质量、减少时间，并为代码重构提供安全网。同时，相关的规范也能大大减少相关开发负担，增强系统稳定性。</p><p>通过这次 JUnit 单元测试实验，我不仅对 Java 中单元测试的基本写法和测试流程有了初步了解，也借这个机会快速熟悉了 Java 项目开发中的一些基础设施。例如，我了解了 Maven 这类依赖管理工具的作用，知道了如何通过 Spring Initializr 或命令行方式快速搭建 Spring Boot 项目脚手架，并在项目结构中区分业务代码和测试代码。</p><p>在单元测试方面，我学习并实践了 JUnit 中常见的测试注解和断言方法，例如 <code>@Test</code>、<code>@BeforeEach</code>、<code>@AfterEach</code>、<code>assertEquals</code>、<code>assertThrows</code> 等。通过计算器和字符串工具类的测试，我体会到单元测试不仅可以验证正常功能，也能覆盖边界情况和异常情况，从而帮助开发者更早发现问题、降低后续维护成本。</p><p>此外，由于我之前也写过 Python 中的 <code>pytest</code> 测试，对单元测试的基本思想并不陌生，例如测试函数的组织、断言结果是否符合预期、通过异常测试验证错误处理逻辑等。因此这次学习 JUnit 时，也能将它和之前使用 <code>pytest</code> 的经验联系起来理解。总体来看，这次实验让我对 Java 项目的搭建、依赖管理、脚手架生成以及单元测试流程都有了更完整的认识。</p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/java/>Java</a>
+<a href=/tags/junit/>JUnit</a>
+<a href=/tags/springboot/>SpringBoot</a>
+<a href=/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/>单元测试</a></section><section class="article-copyright inline-meta"><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{const e=[".main-article",".widget--toc"];e.forEach(e=>{const t=document.querySelector(e);t&&renderMathInElement(t,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})})</script></article><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//coldin04.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2022 -
+2026 Coldin04's Blog</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.2>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

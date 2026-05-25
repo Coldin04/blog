@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prompt on Coldin04's Blog</title><link>https://blog.cold04.com/tags/prompt/</link><description>Recent content in Prompt on Coldin04's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 24 May 2026 17:09:57 +0800</lastBuildDate><atom:link href="https://blog.cold04.com/tags/prompt/index.xml" rel="self" type="application/rss+xml"/><item><title>用嘴写 Prompt：豆包输入法如何成为我与 AI 对话的「语音中介」</title><link>https://blog.cold04.com/p/doubaoime_first_test/</link><pubDate>Sun, 24 May 2026 17:09:57 +0800</pubDate><guid>https://blog.cold04.com/p/doubaoime_first_test/</guid><description>&lt;img src="https://files.seeusercontent.com/2026/05/24/ngI2/c4d9a56.png" alt="Featured image of post 用嘴写 Prompt：豆包输入法如何成为我与 AI 对话的「语音中介」" /&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;今天早上突发奇想：如果我把自己跟 AI 聊天时的输入场景，全部切换到豆包输入法的语音输入，会怎样？结果比预期的好用得多——尤其是它的自动纠错和后处理能力。于是我顺势用它来写 Prompt，一路写到了现在。这篇文章，既是评测，也是实验报告。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="引子prompt-的本质是把话说清楚"&gt;引子：Prompt 的本质，是把话说清楚
+&lt;/h2&gt;&lt;p&gt;先说一个可能有点反直觉的观点：&lt;strong&gt;好的 Prompt，不是靠堆砌「扮演一个专家」「请一步步思考」这类奇技淫巧堆出来的。好的 Prompt，是把你的需求表达清楚。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;思路清晰的人，哪怕用最直白的语言描述需求，AI 也能准确理解。反之，思路混乱的人，套再多 Prompt 模板也救不回来。&lt;/p&gt;
+&lt;p&gt;问题在于：&lt;strong&gt;把思路转化为详尽、有清晰逻辑的文字，这个过程本身就有摩擦。&lt;/strong&gt; 尤其是在灵感涌上来的时候，打字的速度远远跟不上思考的速度。你脑子里已经跑完三圈了，手还卡在第一句话的措辞上。&lt;/p&gt;
+&lt;p&gt;这其实不是新问题。几年前有一款叫 &lt;strong&gt;Typeless&lt;/strong&gt; 的产品，它的核心洞察就是这个——人们需要一个能快速把思维「倾倒」出来的工具，而不是一个功能丰富的排版软件。Typeless 后来没有成为大众产品，但它埋下了一颗种子：&lt;strong&gt;输入工具的未来，不是让打字更「强大」，而是让打字这件事本身变得更「轻」。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;豆包输入法，以及最近一批新一代 AI 输入法的出现，某种程度上就是这颗种子在语音输入领域的引爆点。&lt;/p&gt;
+&lt;p&gt;所以今天早上我决定做一个小实验：把跟 AI 聊天时的输入法切换到豆包，全程用语音输入 Prompt。下面是这次实验的完整记录和思考。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="一我的键盘策略日常打字-vs-语音输入"&gt;一、我的键盘策略：日常打字 vs 语音输入
+&lt;/h2&gt;&lt;p&gt;先交代背景。&lt;/p&gt;
+&lt;p&gt;在今天之前，我的日常打字键盘随设备而变：电脑设备上用 &lt;strong&gt;Rime（中州韵）&lt;/strong&gt;，开源、可定制、隐私可控；手机上，同时使用 &lt;strong&gt;Google 键盘（Gboard）&lt;/strong&gt; 和 &lt;strong&gt;iOS 原生键盘&lt;/strong&gt;。这三者本质上是一回事——它们只是「日常打字键盘」这个角色在不同设备上的不同面孔，没有哪一块跟「AI 语音输入」扯得上关系。&lt;/p&gt;
+&lt;p&gt;然后今天早上，我&lt;strong&gt;新装了豆包输入法&lt;/strong&gt;。不是因为它打字比 Rime 更好用，纯粹是想体验一下——一个外挂了小语言模型做后处理的语音输入法，到底能准到什么程度？尤其是在给 AI 写 Prompt 这个场景下，能不能用？&lt;/p&gt;
+&lt;p&gt;所以现在我的键盘实际上只分两类：&lt;/p&gt;
+&lt;p&gt;角色输入法场景&lt;strong&gt;日常打字&lt;/strong&gt;Rime / Gboard / iOS 原生（随设备而定）打字、密码、私密聊天、文档&lt;strong&gt;语音输入&lt;/strong&gt;豆包输入法（新装）走路、旅行、大段输出、跟 AI 快速对话&lt;/p&gt;
+&lt;p&gt;简单来说：&lt;strong&gt;打字归日常键盘，说话归豆包。&lt;/strong&gt; 豆包是第一个不以「打字体验」为核心、而是以「语音后处理」为核心加入我阵容的输入法。正因为它是新装的、带着明确实验目的来的，所以我能更客观地判断：它到底解决了什么问题，以及它想要什么回报。&lt;/p&gt;
+&lt;h3 id="它还不是完美的"&gt;它还不是完美的
+&lt;/h3&gt;&lt;p&gt;不过诚实地说，体验了一天，也发现了几个明显的短板。&lt;/p&gt;
+&lt;p&gt;首先是&lt;strong&gt;键盘打字的粘滞感&lt;/strong&gt;。如果你习惯 Rime 或 iOS 原生键盘那种干脆利落的打字手感，切换到豆包输入法时会明显感到一种迟滞——按键反馈不够跟手，快速输入时有轻微的粘滞。不是那种「完全不能用」的糟糕，但足以让你在日常打字时坚持留在日常键盘上。换句话说，豆包输入法在键盘输入体验上，目前还完全替代不了 Rime 或自带键盘。它唯一让我愿意切换过来的理由，就是语音输入。&lt;/p&gt;
+&lt;p&gt;其次是&lt;strong&gt;语音识别的边界&lt;/strong&gt;。准确率整体不错，但有几个痛点：自定义词汇缺失——像「Rime 输入法」这种相对小众的专有名词，几乎每次都会被听成「Remi 输入法」，系统也没有提供便捷的自定义词库入口来纠正；中英文混说时英文单词的识别准确率明显下降；对于一些新出现的、使用频率不高的词汇，模型显然还没有覆盖到。这其实也是当前 AI 语音识别的通病——主流场景表现好，边缘场景容易翻车。&lt;/p&gt;
+&lt;p&gt;还有&lt;strong&gt;输入法切换的摩擦&lt;/strong&gt;。在日常键盘和豆包之间频繁切换，操作上确实不够方便。iOS 上需要通过长按地球图标手动选择，每次切换都是一次微小的中断。这个问题不完全是豆包的锅，更多是系统层面的限制，但作为用户，体验是真实存在的。&lt;/p&gt;
+&lt;p&gt;这些短板让我不会把豆包输入法设为主力键盘。但恰恰相反——正是因为它在语音后处理这个长板上做得足够好，我才会容忍这些短板继续用它。接下来的内容，就全部围绕这个长板展开。&lt;/p&gt;
+&lt;h2 id="二两种场景语音输入解决的真实痛点"&gt;二、两种场景：语音输入解决的真实痛点
+&lt;/h2&gt;&lt;h3 id="场景一在路上回复跨平台消息"&gt;场景一：在路上回复跨平台消息
+&lt;/h3&gt;&lt;p&gt;微信自带的语音转文字其实还不错。但问题在于——我只在微信里用微信。当我在 Telegram、Discord 或者 Signal 上收到消息时，系统自带的听写就成了唯一选择。&lt;/p&gt;
+&lt;p&gt;而在走路、提东西、或者单纯不想停下来打字的时候，一个能跨 App 使用的语音输入法就成了刚需。豆包输入法在这里的优势很简单：&lt;strong&gt;任何能调出键盘的地方，就能语音输入。&lt;/strong&gt; 不需要切换 App，不需要复制粘贴。&lt;/p&gt;
+&lt;h3 id="场景二天马行空跟-ai-聊天时打字跟不上脑子"&gt;场景二：天马行空跟 AI 聊天时，打字跟不上脑子
+&lt;/h3&gt;&lt;p&gt;这是我认为更重要的场景。&lt;/p&gt;
+&lt;p&gt;不知道你有没有过这种体验：脑子里有一个模糊但有趣的想法，想丢给 AI 聊一聊。但当你坐下来打字的时候——&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一句写了一半，后面的思路就散了&lt;/li&gt;
+&lt;li&gt;修修改改，发现十分钟过去了还没把 Prompt 发出去&lt;/li&gt;
+&lt;li&gt;最糟的是，那个最初的想法在修改过程中被自己「理性化」了，失去了原本的野性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这时候语音输入的价值就体现出来了。&lt;strong&gt;说话的速度大约是打字的 3-4 倍&lt;/strong&gt;，而且说出来的时候，思维是连续流动的，不会被单个字词的修改打断。&lt;/p&gt;
+&lt;p&gt;我之前的做法是用 Apple 听写，或者直接使用 Gemini/ChatGPT App 自带的语音输入。但问题是——&lt;strong&gt;它们能听清你在说什么，却不理解你在说什么。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="三原生听写-vs-ai-输入法不是听写而是理解"&gt;三、原生听写 vs AI 输入法：不是「听写」，而是「理解」
+&lt;/h2&gt;&lt;p&gt;这是整篇文章最核心的观点。&lt;/p&gt;
+&lt;p&gt;Apple 的听写、Gemini 的语音输入，本质上做的是同一件事：&lt;strong&gt;忠实转录&lt;/strong&gt;。你说什么，它就记什么。听起来没错，但在实践中，问题在于：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;口语和书面语天然有差距。&lt;/strong&gt; 我们说话时会不自觉地带上「嗯」「就是」「那个那个」——忠实转录会把这些全保留下来，导致一段 Prompt 看起来像脱口秀草稿。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;同音词完全依赖声学模型。&lt;/strong&gt; 「Rime 输入法」和「Remi 输入法」，在声学层面几乎无法区分。忠实转录不会帮你纠正，而 AI 后处理可以根据上下文推断。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;人类的即兴表达是有「毛边」的。&lt;/strong&gt; 我们边说边组织语言，句子结构往往头重脚轻、前后颠倒。忠实转录保留这些毛边，AI 后处理可以帮你「熨平」。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;豆包输入法的做法不同：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;语音识别 → 小语言模型后处理 → 输出优化后的文本&lt;/strong&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;它不只是把你说的转成字，而是&lt;strong&gt;在转录结束后，整体性地优化词句，让它读起来像「写出来的」而不是「说出来的」&lt;/strong&gt;。包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据上下文修复同音错别字&lt;/li&gt;
+&lt;li&gt;去除口语填充词&lt;/li&gt;
+&lt;li&gt;调整语序使其更符合书面表达&lt;/li&gt;
+&lt;li&gt;智能断句和标点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;换句话说，原生听写给你的是&lt;strong&gt;草稿&lt;/strong&gt;，AI 输入法给你的是&lt;strong&gt;成品&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;对于 Prompt 来说，这一点尤为重要。因为 Prompt 的质量直接决定 AI 输出的质量——一个充满口语毛边的 Prompt 和一个通顺清晰的 Prompt，可能得到完全不同的回答。你不需要学「Prompt 工程」，你只需要把话说清楚。而豆包输入法帮你做的，就是让「说出来的话」变成「写清楚的文字」。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="四从万象拼音到豆包输入法模型驱动的输入革命"&gt;四、从万象拼音到豆包输入法：模型驱动的输入革命
+&lt;/h2&gt;&lt;p&gt;这里我想引入一个有趣的类比：&lt;strong&gt;Rime 的万象拼音方案。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Rime（中州韵）是一个开源输入法引擎，万象拼音是其中一个拼音输入方案。它的核心思路是什么？&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;传统拼音输入法：规则驱动（白盒）—— 手动维护词库、拼音表、纠错规则&lt;br&gt;
+万象拼音：模型驱动（黑盒）—— 通过类似语言模型的方式，根据上下文预测用户下一个要打的词&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;这和豆包输入法的思路惊人地相似。两者的共同逻辑是：&lt;/p&gt;
+&lt;p&gt;传统方案新方案&lt;strong&gt;拼音输入&lt;/strong&gt;规则匹配词库万象拼音：模型预测&lt;strong&gt;语音输入&lt;/strong&gt;声学模型 + 逐字转录豆包输入法：转录 + LLM 后处理&lt;/p&gt;
+&lt;p&gt;这其实反映了一个更大的趋势：&lt;strong&gt;输入法的进化方向，是从「忠实记录」到「理解意图」。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当然，有人会担心黑盒模型的不可预测性。规则系统虽然僵硬，但至少你知道它什么时候会出错、为什么会出错。模型系统像一个「输入黑箱」，你不知道它会把你的「万象拼音」理解成正确的词，还是自作主张地「润色」成另一句话。&lt;/p&gt;
+&lt;p&gt;但我的态度是：&lt;strong&gt;在复杂场景下，黑盒往往比白盒更有优势。&lt;/strong&gt; 白盒需要大量的人力去写规则、维护词库、穷举边界情况，而模型可以通过数据自动习得这些。尤其是在长语句输入、AI Prompt 场景下，白盒规则很难覆盖人类表达的多样性，而黑盒模型恰好擅长处理这种「模糊但合理」的映射。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="五字节的算盘语音是触达非豆包用户的暗线"&gt;五、字节的算盘：语音是触达非豆包用户的暗线
+&lt;/h2&gt;&lt;p&gt;说了这么多用户体验的好话，也该聊聊「代价」。&lt;/p&gt;
+&lt;p&gt;豆包输入法是免费的。字节不是慈善机构。它的商业逻辑其实很清楚：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;触达非豆包用户。&lt;/strong&gt; 像我这样的人——用 Claude、ChatGPT、Gemini，但不愿意用豆包——字节通过输入法照样能接触到我们。输入法是比 AI 助手更底层的入口，只要你在打字，你就绕不开它。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;收集 Prompt 级语料。&lt;/strong&gt; 用户通过语音输入的 Prompt、聊天内容、搜索关键词，都是极其高质量的训练数据。尤其是 Prompt——它直接反映了用户想要什么、怎么表达需求。这对于优化豆包模型本身、或者构建用户意图理解能力，都有巨大价值。即使用户用的是 Claude 而不是豆包，字节依然能通过输入法了解到「用户是怎么跟 AI 说话的」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用户画像与个性化。&lt;/strong&gt; 输入法天然能了解你的语言习惯、常用词汇、表达风格。即使用户不在字节的生态里（不用豆包、不用抖音、不用头条），输入法依然可以成为拼图的一块。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这对用户来说意味着什么？我的看法是：&lt;strong&gt;这是一笔需要「知情」的交易，而不是需要「拒绝」的交易。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;字节不是偷偷摸摸地在做这件事。输入法需要联网才能使用云端语音识别和 AI 后处理，这是功能上的必要代价——就像你用 Gboard 的语音输入，Google 也会收到你的语音数据一样。&lt;/p&gt;
+&lt;p&gt;关键在于，你是否清楚自己在交换什么，以及是否有选择地控制这种交换。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="六我的选择数据分区而非数据拒绝"&gt;六、我的选择：「数据分区」而非「数据拒绝」
+&lt;/h2&gt;&lt;p&gt;回到开头提到的键盘策略。&lt;/p&gt;
+&lt;p&gt;我完全可以在手机上只装 Rime，所有场景都拒绝被收集数据。但我不这么做，因为我觉得&lt;strong&gt;有些场景下，语音输入的效率提升远大于数据隐私的代价&lt;/strong&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我在走路时回复一条 Telegram 消息——这不会泄露什么惊天秘密，但停下来打字会打断我的节奏。&lt;/li&gt;
+&lt;li&gt;我突然有一个天马行空的想法想和 Claude 聊聊——说五分钟的话就能产出几百字的 Prompt，这创造的价值远超字节可能从中提取的几条语料。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;而对于日常的打字——尤其是在输入密码、私人聊天、工作文档时——我切回 Rime 或 iOS 原生键盘。&lt;/p&gt;
+&lt;p&gt;这就像你不会在家门口修一堵防火墙，但你会给卧室装窗帘。&lt;strong&gt;数据隐私不是非黑即白的开关，而是根据场景调节的旋钮。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="七我的写作工作流从-cyime-到豆包输入法"&gt;七、我的写作工作流：从 Cyime 到豆包输入法
+&lt;/h2&gt;&lt;p&gt;聊完输入，再聊聊输出。这篇文章是怎么被「生产」出来的？我的完整工作流是这样的：&lt;/p&gt;
+&lt;h3 id="1-语音倾倒--豆包输入法"&gt;1. 语音倾倒 → 豆包输入法
+&lt;/h3&gt;&lt;p&gt;我先用豆包输入法的语音输入，把脑子里关于这篇文章的所有想法一股脑说出来。不需要组织语言，不需要在乎措辞——就是把思维「倾倒」出来。豆包输入法的后处理会帮我自动整理成通顺的文字。&lt;/p&gt;
+&lt;p&gt;这一步解决的是「从零到草稿」的摩擦力。&lt;/p&gt;
+&lt;h3 id="2-ai-辅助整理--cyime--mcp"&gt;2. AI 辅助整理 → Cyime + MCP
+&lt;/h3&gt;&lt;p&gt;草稿有了之后，我把它丢到我正在用的编辑器 —— &lt;a class="link" href="https://github.com/Coldin04/Cyime" target="_blank" rel="noopener"
+ &gt;Cyime(青柠写) &lt;/a&gt; 里面。&lt;/p&gt;
+&lt;p&gt;当然，欢迎访问 &lt;a class="link" href="https://github.com/Coldin04/Cyime" target="_blank" rel="noopener"
+ &gt;https://github.com/Coldin04/Cyime&lt;/a&gt; 了解这个项目。&lt;/p&gt;
+&lt;p&gt;Cyime 是我自己用两个月时间写的一个 Web 编辑器，基于 Tiptap 构建，原生支持 Markdown 语法。它有两个我认为很实用的特性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;图片存储的「私有一键转公开」&lt;/strong&gt;：文章里粘贴的图片默认存在 Cloudflare R2（私有云存储），安全可控。当你需要导出并发布到博客的时候，可以一键将图片批量上传到公开图床，省去了手动搬图的麻烦。换句话说，写的时候是隐私的本地工作区，发布的时候是无缝切换的公开环境。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内置 AI MCP 和 Skill 支持&lt;/strong&gt;：这是前两天刚加的新功能。Cyime 集成了 MCP（Model Context Protocol），可以直接调用 AI 来辅助写作——比如你现在正在读的这篇文章，我就是在 Cyime 里把语音转录的原始草稿交给 AI，让它帮我整理结构、展开论点、润色表达。&lt;/li&gt;
+&lt;/ol&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;这里我想特别说明一下，避免误解：&lt;strong&gt;AI 在这里的角色是「整理者」，不是「创作者」。&lt;/strong&gt; 文章的所有观点、素材、逻辑框架和表达语气都来自我自己——AI 只是帮我省去了「把散乱的草稿组织成通顺文章」这个体力活。这和「洗稿」有本质区别：洗稿是用 AI 把他人的内容换一种说法，而我的做法是用 AI 把自己的内容整理得更清晰。创意的源头和最终审校权始终在自己手里。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h3 id="3-人工审校--导出发布"&gt;3. 人工审校 → 导出发布
+&lt;/h3&gt;&lt;p&gt;AI 整理完之后，我在 Cyime 里做最后一轮修改——调整语气、补充细节、删掉 AI 产生的不准确表达。确认无误后，利用 Cyime 的导出功能，一键处理图片并发布到博客。&lt;/p&gt;
+&lt;p&gt;整个流程的核心哲学是：&lt;strong&gt;把人的精力集中在「思考」和「审校」两个高价值环节，把「打字」和「排版」两个低价值环节交给工具。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;而这个流程得以跑通，豆包输入法在输入侧、Cyime 在编辑侧，各补上了一块关键的拼图。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="八声音正在成为思考的新界面"&gt;八、声音正在成为思考的新界面
+&lt;/h2&gt;&lt;p&gt;最后说一点展望。&lt;/p&gt;
+&lt;p&gt;过去写一篇博客，我需要在空白文档前坐很久，组织语言、斟酌词句、反复修改——大量的精力消耗在「写」这个行为本身，而不是「思考」。&lt;/p&gt;
+&lt;p&gt;而今天这套工作流让我的角色发生了转变：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;豆包输入法&lt;/strong&gt; → 把声音变成草稿&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI（通过 Cyime MCP）&lt;/strong&gt; → 把草稿整理成结构化的初稿&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;我&lt;/strong&gt; → 思考和最终审校&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我发现自己从「打字员 + 编辑」变成了「思考者 + 最终审校」。而语音输入在其中扮演的角色不是「替代打字」，而是 &lt;strong&gt;「替代第一稿」&lt;/strong&gt; ——它消除了从脑海中的想法到纸面上的文字之间最痛苦的摩擦。&lt;/p&gt;
+&lt;p&gt;这让我想起一个观点：&lt;strong&gt;AI 时代的核心竞争力，不是「会不会写」，而是「会不会想」。&lt;/strong&gt; 而语音输入 + AI 后处理，正在让「想」和「写」之间的距离缩短到几乎为零。&lt;/p&gt;
+&lt;p&gt;豆包输入法当然不是唯一在做这件事的产品。但它目前是我体验过的、在中文长句语音输入场景下做得最好的一个。至于字节借此收集了多少数据、优化了多少模型——那是他们的事。我在知情的前提下选择使用它，因为我觉得这笔交易划算。&lt;/p&gt;
+&lt;p&gt;而也许更值得关注的是：&lt;strong&gt;当声音成为思考的新界面，我们和 AI 之间的对话方式，会不会从根本上发生变化？&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;本文初稿使用豆包输入法语音输出原始想法，在 Cyime 中通过 MCP 辅助整理结构，经人工审校后完成。结论是：如果你用对了工具，往往能事半功倍的完成工作。&lt;/em&gt;&lt;/p&gt;</description></item></channel></rss>
