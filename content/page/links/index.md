@@ -86,6 +86,10 @@ links:
     description: chihuo2104の部落格
     website: https://blog.chihuo2104.dev/
     image: https://www.gravatar.com/avatar/23c15369dca77fe489d37321fe54ec34?s=200&d=mp
+  - title: 日落果的Blog
+    description: 好耶，是日落果。
+    website: https://blog.akana.moe/
+    image: https://avatars.githubusercontent.com/u/37149302
     
 
 menu:
