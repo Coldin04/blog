@@ -90,6 +90,15 @@ links:
     description: 好耶，是日落果。
     website: https://blog.akana.moe/
     image: https://avatars.githubusercontent.com/u/37149302
+  - title: TomyJan
+    description: 一只菜的要死还每天不努力只知道bbll娱乐至死的废柴
+    website: https://blog.tomys.top/ 
+    image: https://public-cdn.tomys.top/head.png
+  - title: CircleCrop Blog
+    description: 舟遥遥以轻飏，风飘飘而吹衣。
+    website: https://aiccrop.com/ 
+    image: https://aiccrop.com/api/head/
+
     
 
 menu:
