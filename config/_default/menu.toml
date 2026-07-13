@@ -31,6 +31,14 @@ url = "https://note.cold04.com"
 [social.params]
 icon = "notebook"
 
+[[main]]
+identifier = "friends"
+name = "友链"
+url = "https://cold04.com/friends/"
+
+[main.params]
+icon = "link"
+newtab = true
 
 [[main]]
 identifier = "note"

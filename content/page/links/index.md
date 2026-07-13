@@ -1,6 +1,11 @@
 ---
 title: "友链"
 slug: "links"
+layout: "redirect"
+build:
+  list: never
+sitemap:
+  disable: true
 links:
   - title: 酷丁的笔记站
     description: 一个有点水的笔记，致力于分享自己的知识
@@ -100,12 +105,6 @@ links:
     image: https://aiccrop.com/api/head/
 
     
-
-menu:
-    main: 
-        weight: 4
-        params:
-            icon: link
 
 comments: false
 ---
